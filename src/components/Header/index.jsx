@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home'
 import KeyIcon from '@mui/icons-material/Key'
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import WidgetsIcon from '@mui/icons-material/Widgets'
 
 export function Header() {
   const navigate = useNavigate()
@@ -15,7 +16,8 @@ export function Header() {
   const menuOptions = [
     { label: 'Home', pathname: '/' },
     { label: 'Rifas', pathname: '/raffle-list' },
-    { label: 'Contato', pathname: '/contact' },
+    { label: 'Sobre Nós', pathname: '/about' },
+    { label: 'Termos de Uso', pathname: '/terms-of-use' },
     { label: 'Área Restrita', pathname: '/restricted-area' },
   ]
 
@@ -41,11 +43,19 @@ export function Header() {
         </NavName>
         <Span>|</Span>
         <NavName
-          onClick={() => navigate('/contact')}
-          $isActive={pathname.includes('contact')}
+          onClick={() => navigate('/about')}
+          $isActive={pathname.includes('about')}
         >
           <PermContactCalendarIcon />
-          Contato
+          Sobre Nós
+        </NavName>
+        <Span>|</Span>
+        <NavName
+          onClick={() => navigate('/terms-of-use')}
+          $isActive={pathname.includes('terms-of-use')}
+        >
+          <WidgetsIcon />
+          Termos de Uso
         </NavName>
         <Span>|</Span>
         <NavName

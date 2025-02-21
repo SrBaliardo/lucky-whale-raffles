@@ -22,8 +22,8 @@ export function FooterMenu() {
           <ul>
             <li onClick={navHome}>Home</li>
             <li onClick={() => navigate('/raffle-list')}>Rifas</li>
-            <li onClick={() => navigate('/')}>Sobre Nós</li>
-            <li onClick={() => navigate('/')}>Termos de Uso</li>
+            <li onClick={() => navigate('/about')}>Sobre Nós</li>
+            <li onClick={() => navigate('/terms-of-use')}>Termos de Uso</li>
           </ul>
         </div>
 

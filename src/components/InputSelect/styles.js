@@ -13,43 +13,33 @@ const fadeIn = keyframes`
 
 export const MenuContainer = styled.div`
   padding-bottom: 30px;
+  position: relative !important;
 `
 
-export const Hamburger = styled.div`
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  width: 40px;
-  height: 50px;
+export const Select = styled.div`
+  width: 100%;
+  height: 35px;
+  background-color: #e0f5fe;
+  border-radius: 8px;
 
-  div {
-    width: 100%;
-    height: 4px;
-    background-color: #fff;
-    border-radius: 7px;
-    margin: 4px 0;
-    transition: all 0.3s ease;
-
-    &:nth-child(1) {
-      transform: ${({ $isOpen }) =>
-        $isOpen ? 'rotate(45deg) translate(8px, 8px)' : 'rotate(0)'};
-    }
-    &:nth-child(2) {
-      opacity: ${({ $isOpen }) => ($isOpen ? '0' : '1')};
-    }
-    &:nth-child(3) {
-      transform: ${({ $isOpen }) =>
-        $isOpen ? 'rotate(-45deg) translate(8px, -8px)' : 'rotate(0)'};
-    }
+  label {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 5px 0 5px;
+    font-weight: normal !important;
+    color: #bfbfbf;
   }
 `
 
 export const MenuList = styled.ul`
   position: absolute;
-  right: 20px;
+  top: 38px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 200px;
 `
 
 export const MenuItem = styled.li`
@@ -57,13 +47,14 @@ export const MenuItem = styled.li`
   width: 100%;
   padding: 10px;
   background-color: #3982b8;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   text-align: center;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: bold;
   opacity: 0;
   ${({ $isOpen, $delay }) =>
     $isOpen &&
@@ -76,7 +67,7 @@ export const MenuItem = styled.li`
 
   &:hover {
     font-weight: bold;
-    background-color: #ffffff;
+    background-color: #efefef;
     color: #3982b8;
   }
 
@@ -92,9 +83,6 @@ export const MenuItem = styled.li`
     border-bottom: 0.5px solid #bfbfbf;
   }
   &:nth-child(4) {
-    border-bottom: 0.5px solid #bfbfbf;
-  }
-  &:nth-child(5) {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
   }

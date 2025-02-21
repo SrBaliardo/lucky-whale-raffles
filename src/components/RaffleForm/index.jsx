@@ -113,7 +113,7 @@ export function RaffleForm() {
 
       <ContainerButtons>
         {/* <ButtonBordered>Cancelar</ButtonBordered> */}
-        <ButtonFilled>Registrar</ButtonFilled>
+        <ButtonFilled type='button'>Registrar</ButtonFilled>
       </ContainerButtons>
     </Form>
   )

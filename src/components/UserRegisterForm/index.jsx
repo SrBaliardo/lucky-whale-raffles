@@ -166,7 +166,7 @@ export function UserRegisterForm() {
       </ContainerPassword>
 
       <ContainerButtons>
-        <ButtonFilled>Cadastrar</ButtonFilled>
+        <ButtonFilled type='button'>Cadastrar</ButtonFilled>
       </ContainerButtons>
     </Form>
   )

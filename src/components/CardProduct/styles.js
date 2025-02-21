@@ -6,7 +6,7 @@ export const ContainerCardProduct = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 250px;
-  height: 350px;
+  height: 400px;
   position: relative;
   cursor: pointer;
 `
@@ -15,7 +15,7 @@ export const ConteinerItems = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 85%;
+  height: 80%;
   justify-content: space-around;
   background-color: #efefef;
   border-radius: 15px;
@@ -28,8 +28,8 @@ export const ConteinerItems = styled.div`
 `
 
 export const Image = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   position: absolute;
   top: 15px;
 `

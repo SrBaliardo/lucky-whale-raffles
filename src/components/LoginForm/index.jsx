@@ -16,7 +16,7 @@ export function LoginForm() {
         <input type='text' placeholder='Senha' />
       </ContainerLoginInfo>
 
-      <ButtonFilled>Entrar</ButtonFilled>
+      <ButtonFilled type='button'>Entrar</ButtonFilled>
     </Form>
   )
 }

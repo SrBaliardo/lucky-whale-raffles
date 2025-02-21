@@ -1,20 +1,32 @@
-import { RafflesList, ButtonFilled, CardProduct } from '../../components'
+import { CardProduct, InputSelect } from '../../components'
 import { Container, ContainerFilter, ContainerContent, Title } from './styles'
 
 export function RaffleList() {
+  const menuOptions = [
+    { label: 'Todas', pathname: '' },
+    { label: 'Pets', pathname: '' },
+    { label: 'Pessoas', pathname: '' },
+    { label: 'Organizações', pathname: '' },
+  ]
+
   return (
     <Container>
       <Title>Rifas Ativas</Title>
 
       <ContainerFilter>
-        <ContainerContent>
+        <div>
           <label>Categorias</label>
-          <input type='text' />
-        </ContainerContent>
+          <InputSelect options={menuOptions} />
+        </div>
       </ContainerFilter>
 
-      <CardProduct />
-      {/* <RafflesList /> */}
+      <ContainerContent>
+        <CardProduct />
+        <CardProduct />
+        <CardProduct />
+        <CardProduct />
+        <CardProduct />
+      </ContainerContent>
     </Container>
   )
 }

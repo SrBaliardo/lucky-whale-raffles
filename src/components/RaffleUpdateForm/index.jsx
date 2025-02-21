@@ -32,7 +32,7 @@ export function RaffleUpdateForm() {
         </ContainerContent>
       </ContainerInfo>
       <ContainerButtons>
-        <ButtonFilled>Sortear</ButtonFilled>
+        <ButtonFilled type='button'>Sortear</ButtonFilled>
       </ContainerButtons>
     </Form>
   )

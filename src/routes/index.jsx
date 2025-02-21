@@ -2,10 +2,12 @@ import { Route, Routes } from 'react-router-dom'
 import { MainLayout } from '../layouts/MainLayout'
 import { AdminLayout } from '../layouts/AdminLayout'
 import {
-  Contact,
+  About,
   Home,
   RaffleList,
   RegisterAdmin,
+  UseTerms,
+  PrivacyPolicy,
   RestrictedArea,
   AdminRaffleList,
   UserDashboard,
@@ -21,9 +23,11 @@ export function Router() {
       <Route path='/' element={<MainLayout />}>
         <Route path='/' element={<Home />} />
         <Route path='/raffle-list' element={<RaffleList />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/terms-of-use' element={<UseTerms />} />
         <Route path='/restricted-area' element={<RestrictedArea />} />
         <Route path='/user-register' element={<RegisterAdmin />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       </Route>
 
       <Route path='/admin' element={<AdminLayout />}>
