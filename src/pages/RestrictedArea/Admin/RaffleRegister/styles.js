@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  min-height: calc(100vh - 190px);
+  height: 100%;
   width: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +12,16 @@ export const Container = styled.div`
 `
 
 export const Title = styled.h1`
-  margin-bottom: 20px;
+  margin-top: 20px;
   color: #6c757d;
+  font-size: 24px;
+  padding: 10px;
+`
+
+export const Subtitle = styled.h2`
+  margin-top: 20px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px;
 `

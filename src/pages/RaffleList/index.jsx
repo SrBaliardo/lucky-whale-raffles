@@ -1,4 +1,4 @@
-import { CardProduct, InputSelect } from '../../components'
+import { RaffleCard, InputSelect } from '../../components'
 import { Container, ContainerFilter, ContainerContent, Title } from './styles'
 
 export function RaffleList() {
@@ -21,11 +21,11 @@ export function RaffleList() {
       </ContainerFilter>
 
       <ContainerContent>
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
+        <RaffleCard />
+        <RaffleCard />
+        <RaffleCard />
+        <RaffleCard />
+        <RaffleCard />
       </ContainerContent>
     </Container>
   )

@@ -21,7 +21,7 @@ export const Container = styled.div`
     }
 
     .size-collumn {
-      width: 500px !important;
+      width: 900px !important;
       max-width: 100% !important;
       overflow-wrap: break-word;
     }

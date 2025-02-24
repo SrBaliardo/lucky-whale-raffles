@@ -34,8 +34,6 @@ export function AdminRaffleList() {
 
   return (
     <Container>
-      <Title>Rifas Ativas</Title>
-
       <ContainerFilter>
         <div>
           <label>Categorias</label>

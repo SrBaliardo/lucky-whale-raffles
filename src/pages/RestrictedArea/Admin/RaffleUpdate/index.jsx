@@ -5,8 +5,6 @@ import UndoIcon from '@mui/icons-material/Undo'
 export function RaffleUpdate() {
   return (
     <Container>
-      <Title>Atualizar Rifa</Title>
-
       <Back
         onClick={() => {
           window.history.back()

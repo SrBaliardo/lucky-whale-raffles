@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import BG from '../../assets/lucky-whale-waves-bg.png'
 
-export const BottomSection = styled.section`
+export const Container = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ export const BottomSection = styled.section`
   }
 `
 
-export const BottomContent = styled.div`
+export const ContainerContent = styled.div`
   height: 100%;
   width: 800px;
   max-width: 100%;

@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-
-import { BottomSection, BottomContent } from './styles'
+import { Container, ContainerContent } from './styles'
 import TsunamiIcon from '@mui/icons-material/Tsunami'
 import SailingIcon from '@mui/icons-material/Sailing'
 
@@ -15,8 +14,8 @@ export function AdminFooterMenu() {
   }
 
   return (
-    <BottomSection>
-      <BottomContent>
+    <Container>
+      <ContainerContent>
         <div>
           <h3>LINKS</h3>
           <ul>
@@ -44,7 +43,7 @@ export function AdminFooterMenu() {
             <li onClick={() => navigate('/admin/raffle-list')}>Sortear</li>
           </ul>
         </div>
-      </BottomContent>
-    </BottomSection>
+      </ContainerContent>
+    </Container>
   )
 }
