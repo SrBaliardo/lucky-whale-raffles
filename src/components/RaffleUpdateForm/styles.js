@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import WavesImg from '../../assets/waves-white.png'
 
 const gradientBg = keyframes`
   0% {
@@ -20,7 +21,7 @@ const gradientBg = keyframes`
 
 export const Form = styled.form`
   max-width: 100%;
-  width: 500px;
+  width: 800px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -40,6 +41,38 @@ export const Form = styled.form`
     color: #6c757d;
     padding: 0 10px;
   }
+
+  .form {
+    background-color: #e9e9e9;
+  }
+
+  .prize-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f59705;
+    margin-top: 20px;
+
+    h2 {
+      margin-top: 0;
+    }
+  }
+`
+
+export const Title = styled.h2`
+  font-size: 16px;
+  font-weight: bold;
+  color: #f59705;
+  margin-top: 20px;
+  text-align: center;
+`
+
+export const Description = styled.p`
+  font-size: 14px;
+  color: #6c757d;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
 `
 
 export const ContainerContent = styled.div`
@@ -59,4 +92,33 @@ export const ContainerButtons = styled.div`
 export const ContainerInfo = styled.div`
   display: flex;
   gap: 20px;
+`
+
+export const ContainerImg = styled.div`
+  width: 80% !important;
+  height: 180px !important;
+  border: 1px dashed #e0f5fe;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  @media (max-width: 430px) {
+    height: 110px !important;
+  }
+`
+
+export const Waves = styled.img`
+  border: none;
+  width: 100%;
+  height: 42px;
+  background: url(${WavesImg}) center;
+  background-size: 300px;
+  opacity: 0.3;
+  margin: 25px 0 15px 0;
 `

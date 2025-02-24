@@ -26,8 +26,17 @@ export const TitleSection = styled.h1`
   background-color: #e0f5fe;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  border-top-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+
+  p {
+    font-size: 12px;
+
+    @media (max-width: 430px) {
+      width: 290px;
+      justify-self: center;
+    }
+  }
 `
 
 export const Title = styled.h2`

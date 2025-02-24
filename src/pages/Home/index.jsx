@@ -23,7 +23,7 @@ import {
   FAQContent,
 } from './styles'
 import { ButtonBordered, ButtonFilled, MergingWhale } from '../../components'
-import { faqs } from './faq'
+import { faqs } from './faq.jsx'
 import CapaEBookImg from '../../assets/CapaE-Book_Lucky-Whale.png'
 import eBookPDF from '../../assets/eBook_10-Dicas-para-uma-boa-Rifa_Lucky-Whale.pdf'
 import Diversity3Icon from '@mui/icons-material/Diversity3'
@@ -108,7 +108,7 @@ export function Home() {
         </AdvantageContent>
       </AdvantageSection>
 
-      <EBookSection>
+      <EBookSection id='eBook'>
         <CapaEBook src={CapaEBookImg} alt='e-book image' />
         <EBookContainer>
           <EBookContent>
@@ -229,9 +229,14 @@ export function Home() {
                   )}
                 </span>
               </p>
-              <p className={`faq-answer ${openFaqs[index] ? 'open' : ''}`}>
+              {/* <p className={`faq-answer ${openFaqs[index] ? 'open' : ''}`}>
                 {faq.answer}
-              </p>
+              </p> */}
+
+              <div
+                className={`faq-answer ${openFaqs[index] ? 'open' : ''}`}
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              />
             </div>
           ))}
         </FAQContent>

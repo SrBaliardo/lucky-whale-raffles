@@ -4,7 +4,7 @@ import { BottomSection, BottomContent } from './styles'
 import TsunamiIcon from '@mui/icons-material/Tsunami'
 import SailingIcon from '@mui/icons-material/Sailing'
 
-export function FooterMenu() {
+export function AdminFooterMenu() {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -40,8 +40,8 @@ export function FooterMenu() {
               Criar Rifa
             </li>
             {/* <li onClick={() => navigate('/restricted-area')}>Criar Rifa</li> */}
-            <li onClick={() => navigate('/user-register')}>Cadastrar</li>
-            <li onClick={() => navigate('/restricted-area')}>Entrar</li>
+            <li onClick={() => navigate('/admin/raffle-list')}>Minhas Rifas</li>
+            <li onClick={() => navigate('/admin/raffle-list')}>Sortear</li>
           </ul>
         </div>
       </BottomContent>

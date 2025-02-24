@@ -5,6 +5,7 @@ import {
   Form,
   TItle,
   ContainerContent,
+  Sub,
   ContainerAddress,
   ContainerPassword,
   ContainerButtons,
@@ -84,23 +85,56 @@ export function UserRegisterForm() {
     setCepData(false)
   }
 
+  const onSubmit = (data) => {
+    if (data.password !== data.confirmPassword) {
+      alert('as senhas devem ser iguais')
+      return
+    }
+
+    const birthDate = new Date(data.birthDate)
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const monthDiff = today.getMonth() - birthDate.getMonth()
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--
+    }
+
+    if (age < 18) {
+      alert('deve ser maior do que 18 anos para criar conta')
+      return
+    }
+    alert('Conta criada com sucesso!')
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <TItle>Dados Pessoais</TItle>
 
       <ContainerContent>
         <label>
           Nome Completo <span>*</span>
         </label>
-        <input type='text' />
+        <input type='text' {...register('fullName', { required: true })} />
       </ContainerContent>
 
-      <ContainerContent>
-        <label>
-          E-mail <span>*</span>
-        </label>
-        <input type='email' />
-      </ContainerContent>
+      <Sub>
+        <ContainerContent>
+          <label>
+            E-mail <span>*</span>
+          </label>
+          <input type='email' {...register('email', { required: true })} />
+        </ContainerContent>
+
+        <ContainerContent className='born'>
+          <label>
+            Data de Nascimento <span>*</span>
+          </label>
+          <input type='date' {...register('birthDate', { required: true })} />
+        </ContainerContent>
+      </Sub>
 
       <ContainerAddress>
         <ContainerContent>
@@ -154,19 +188,25 @@ export function UserRegisterForm() {
           <label>
             Senha <span>*</span>
           </label>
-          <input type='password' />
+          <input
+            type='password'
+            {...register('password', { required: true })}
+          />
         </ContainerContent>
 
         <ContainerContent>
           <label>
             Repita a Senha <span>*</span>
           </label>
-          <input type='password' />
+          <input
+            type='password'
+            {...register('confirmPassword', { required: true })}
+          />
         </ContainerContent>
       </ContainerPassword>
 
       <ContainerButtons>
-        <ButtonFilled type='button'>Cadastrar</ButtonFilled>
+        <ButtonFilled type='submit'>Cadastrar</ButtonFilled>
       </ContainerButtons>
     </Form>
   )

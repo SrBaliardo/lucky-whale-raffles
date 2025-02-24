@@ -16,7 +16,7 @@ export const ContainerFilter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px 20px 50px 20px;
   background-color: #ffffff;
 
   div {
@@ -40,8 +40,8 @@ export const ContainerFilter = styled.div`
 
 export const ContainerContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
   align-items: center;
   justify-items: center;
 

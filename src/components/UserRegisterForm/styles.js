@@ -27,6 +27,20 @@ export const ContainerContent = styled.div`
   width: 100%;
 `
 
+export const Sub = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  @media (max-width: 430px) {
+    flex-direction: column;
+
+    .born {
+      width: 165px;
+    }
+  }
+`
+
 export const ContainerButtons = styled.div`
   align-self: center;
   margin-top: 30px;

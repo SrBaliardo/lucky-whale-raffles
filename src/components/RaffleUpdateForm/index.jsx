@@ -1,20 +1,64 @@
 import {
   Form,
   ContainerContent,
+  Title,
+  Description,
   ContainerInfo,
+  ContainerImg,
+  Waves,
   ContainerButtons,
 } from './styles'
 import { ButtonFilled } from '../../components'
+import { useEffect, useState } from 'react'
 
 export function RaffleUpdateForm() {
+  const [disabled, setDisabled] = useState(true)
+
+  useEffect(() => {
+    setDisabled(disabled)
+  }, [])
+
   return (
     <Form>
       <ContainerContent>
-        <label>
-          Título da Rifa <span>*</span>
-        </label>
-        <input type='text' />
+        <Title>*título da rifa*</Title>
       </ContainerContent>
+
+      <ContainerInfo>
+        <ContainerImg>
+          <img />
+          *foto da rifa*
+        </ContainerImg>
+
+        <ContainerContent>
+          <Description>*descrição da rifa*</Description>
+        </ContainerContent>
+      </ContainerInfo>
+
+      <Waves />
+
+      <ContainerContent>
+        <Title className='prize-title'>Prêmio</Title>
+      </ContainerContent>
+
+      <ContainerInfo>
+        <ContainerContent>
+          <Description>*descrição do prêmio*</Description>
+        </ContainerContent>
+
+        <ContainerImg>
+          <img />
+          *foto do prêmio*
+        </ContainerImg>
+      </ContainerInfo>
+
+      <Waves />
+
+      <ContainerButtons>
+        <ButtonFilled type='button' $disabled={disabled}>
+          Sortear
+        </ButtonFilled>
+      </ContainerButtons>
 
       <ContainerInfo>
         <ContainerContent>
@@ -31,9 +75,6 @@ export function RaffleUpdateForm() {
           <input type='text' />
         </ContainerContent>
       </ContainerInfo>
-      <ContainerButtons>
-        <ButtonFilled type='button'>Sortear</ButtonFilled>
-      </ContainerButtons>
     </Form>
   )
 }

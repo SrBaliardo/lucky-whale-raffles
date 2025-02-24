@@ -1,7 +1,10 @@
 import { Form, Key, ContainerLoginInfo } from './styles'
 import { ButtonFilled } from '../../components'
+import { useNavigate } from 'react-router-dom'
 
 export function LoginForm() {
+  const navigate = useNavigate()
+
   return (
     <Form>
       <Key />
@@ -16,7 +19,9 @@ export function LoginForm() {
         <input type='text' placeholder='Senha' />
       </ContainerLoginInfo>
 
-      <ButtonFilled type='button'>Entrar</ButtonFilled>
+      <ButtonFilled type='button' onClick={() => navigate('/admin/dashboard')}>
+        Entrar
+      </ButtonFilled>
     </Form>
   )
 }

@@ -93,6 +93,36 @@ export const ContainerInfo = styled.div`
   gap: 20px;
 `
 
+export const ContainerPrice = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 225px;
+  align-self: center;
+
+  @media (max-width: 430px) {
+    width: 165px;
+  }
+`
+
+export const ContainerImg = styled.div`
+  width: 80% !important;
+  height: 180px !important;
+  border: 1px dashed #e0f5fe;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  @media (max-width: 430px) {
+    height: 110px !important;
+  }
+`
+
 export const UploadLabel = styled.label`
   padding: 5px 10px;
   font-weight: bold;

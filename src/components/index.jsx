@@ -1,4 +1,5 @@
-export * from './AdminSideMenu'
+export * from './AdminFooterMenu'
+export * from './AdminHeader'
 export * from './ButtonBordered'
 export * from './ButtonFilled'
 export * from './CardProduct'

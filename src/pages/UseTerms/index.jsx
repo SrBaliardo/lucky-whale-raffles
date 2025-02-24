@@ -16,7 +16,13 @@ export function UseTerms() {
   return (
     <Container>
       <AboutContent>
-        <TitleSection>Termos de Uso</TitleSection>
+        <TitleSection>
+          Termos de Uso
+          <Text>
+            ~ Antes de utilizar nossa plataforma, leia atentamente os Termos de
+            Uso ~
+          </Text>
+        </TitleSection>
         <Title>1. SOBRE ESTE TERMO DE USO</Title>
         <Subtitle>1.1 Aceitação Automática</Subtitle>
         <Text>

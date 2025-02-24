@@ -5,6 +5,7 @@ export const standardTheme = {
   secondPurple: '#9370db',
   gren: '#01cc01',
   fluorescent: '#ccff33',
+  blue2: '#00afef',
   blue: '#3982b8',
   lightblue: '#6abce2',
   superlightblue: '#b8e2f4',

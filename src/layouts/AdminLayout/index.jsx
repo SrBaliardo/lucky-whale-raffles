@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from 'react-router-dom'
 import { Container } from './styles'
-import { Header, Footer } from '../../components'
+import { AdminHeader, Footer, AdminFooterMenu } from '../../components'
 
 export function AdminLayout() {
   // const { admin: isAdmin } = JSON.parse(
@@ -10,8 +10,9 @@ export function AdminLayout() {
 
   return isAdmin ? (
     <Container>
-      <Header />
+      <AdminHeader />
       <Outlet />
+      <AdminFooterMenu />
       <Footer />
     </Container>
   ) : (

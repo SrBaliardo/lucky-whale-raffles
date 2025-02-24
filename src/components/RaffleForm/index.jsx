@@ -8,9 +8,12 @@ import {
   ContainerTicketType,
   ContainerTicketInfo,
   ContainerInfo,
+  ContainerImg,
+  ContainerPrice,
 } from './styles'
-import { ButtonBordered, ButtonFilled } from '../../components'
+import { ButtonFilled } from '../../components'
 import PermMediaIcon from '@mui/icons-material/PermMedia'
+import DefaultImage from '../../assets/default-user.png'
 
 export function RaffleForm() {
   const [fileName, setFileName] = useState(null)
@@ -25,35 +28,39 @@ export function RaffleForm() {
       </ContainerContent>
 
       <ContainerContent>
-        <label>Propósito da Rifa</label>
+        <label>Descrição da Rifa</label>
         <input type='text' />
       </ContainerContent>
+
+      <ContainerInfo>
+        <ContainerContent>
+          <label>Capa da Rifa</label>
+          <UploadLabel>
+            {fileName || (
+              <>
+                <PermMediaIcon />
+                carregar imagem
+              </>
+            )}
+            <input
+              type='file'
+              accept='image/png, image/jpeg'
+              onChange={(value) => {
+                setFileName(value.target.files[0]?.name)
+              }}
+            />
+          </UploadLabel>
+        </ContainerContent>
+
+        <ContainerImg>
+          <img src={DefaultImage} alt='image' />
+        </ContainerImg>
+      </ContainerInfo>
 
       <ContainerContent>
         <label>
           Descrição do Prêmio <span>*</span>
         </label>
-        <input type='text' />
-      </ContainerContent>
-
-      <ContainerDate>
-        <ContainerContent>
-          <label>
-            Dia do Sorteio <span>*</span>
-          </label>
-          <input type='text' />
-        </ContainerContent>
-
-        <ContainerContent>
-          <label>
-            Hora do Sorteio <span>*</span>
-          </label>
-          <input type='text' />
-        </ContainerContent>
-      </ContainerDate>
-
-      <ContainerContent>
-        <label>Local do Sorteio ou Grupo Whatsapp</label>
         <input type='text' />
       </ContainerContent>
 
@@ -77,42 +84,37 @@ export function RaffleForm() {
           </UploadLabel>
         </ContainerContent>
 
-        <ContainerContent>
-          <label>
-            Selecione <span>*</span>
-          </label>
-          <ContainerTicketType>
-            <label className='ticket-type' name='ticket-type'>
-              Nome
-              <input type='radio' name='type-ticket' value='name' />
-            </label>
-            <label className='ticket-type' name='ticket-type'>
-              Número
-              <input type='radio' name='type-ticket' value='number' />
-            </label>
-          </ContainerTicketType>
-          <span className='ticket-type-ex'>Ex: Maria, José... ou 1,2,3...</span>
-        </ContainerContent>
+        <ContainerImg>
+          <img src={DefaultImage} alt='image' />
+        </ContainerImg>
       </ContainerInfo>
 
-      <ContainerTicketInfo>
+      <ContainerDate>
         <ContainerContent>
           <label>
-            Quantidade <span>*</span>
+            Dia do Sorteio <span>*</span>
           </label>
-          <input type='text' />
+          <input type='date' />
         </ContainerContent>
 
         <ContainerContent>
           <label>
-            Preço <span>*</span>
+            Hora do Sorteio <span>*</span>
+          </label>
+          <input type='time' />
+        </ContainerContent>
+      </ContainerDate>
+
+      <ContainerPrice>
+        <ContainerContent>
+          <label>
+            Preço do BIlhete <span>*</span>
           </label>
           <input type='text' />
         </ContainerContent>
-      </ContainerTicketInfo>
+      </ContainerPrice>
 
       <ContainerButtons>
-        {/* <ButtonBordered>Cancelar</ButtonBordered> */}
         <ButtonFilled type='button'>Registrar</ButtonFilled>
       </ContainerButtons>
     </Form>

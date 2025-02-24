@@ -11,13 +11,23 @@ export const Container = styled.div`
   background-color: #ffffff;
 `
 
+export const Title = styled.h1`
+  margin-bottom: 20px;
+  color: #6c757d;
+`
+
+export const ContainerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const ContainerFilter = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 20px 50px 20px;
   background-color: #ffffff;
 
   button {
@@ -26,27 +36,32 @@ export const ContainerFilter = styled.div`
     border-color: #cf3057 !important;
     font-size: 14px;
     border-radius: 20px;
+    align-self: flex-end;
     &:hover {
       background-color: #ffffff !important;
       color: #cf3057 !important;
     }
   }
 
+  div {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+
+  label {
+    color: #6c757d;
+    font-weight: bold;
+  }
+
   input {
-    background-color: #3982b8;
+    background-color: #e0f5fe;
+    height: 35px;
+    border-radius: 8px;
+    padding: 0 10px;
   }
 
   @media (max-width: 430px) {
     flex-direction: column;
   }
-`
-
-export const ContainerContent = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const Title = styled.h1`
-  margin-bottom: 20px;
-  color: #6c757d;
 `

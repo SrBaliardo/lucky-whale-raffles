@@ -12,7 +12,6 @@ const fadeIn = keyframes`
 `
 
 export const MenuContainer = styled.div`
-  padding-bottom: 30px;
   position: relative !important;
 `
 
@@ -71,18 +70,16 @@ export const MenuItem = styled.li`
     color: #3982b8;
   }
 
-  &:nth-child(1) {
+  &:first-child {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+  }
+
+  &:not(:last-child) {
     border-bottom: 0.5px solid #bfbfbf;
   }
-  &:nth-child(2) {
-    border-bottom: 0.5px solid #bfbfbf;
-  }
-  &:nth-child(3) {
-    border-bottom: 0.5px solid #bfbfbf;
-  }
-  &:nth-child(4) {
+
+  &:last-child {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
   }

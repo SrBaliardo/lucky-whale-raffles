@@ -6,49 +6,101 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Card from '@mui/material/Card'
 import { Container, ViewIcon } from './styles'
+import { useNavigate } from 'react-router-dom'
 
-function createData(name, calories, fat, carbs, protein, view) {
-  return { name, calories, fat, carbs, protein, view }
+function createData(id, title, tickets_amount, money_amount, status) {
+  return { id, title, tickets_amount, money_amount, status }
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, <ViewIcon />),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, <ViewIcon />),
-  createData('Eclair', 262, 16.0, 24, 6.0, <ViewIcon />),
-  createData('Cupcake', 305, 3.7, 67, 4.3, <ViewIcon />),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, <ViewIcon />),
+  createData(100001, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa'),
+  createData(
+    100002,
+    'Ice cream sandwichIce cream sandwich',
+    237,
+    'R$ 900,00',
+    'Ativa',
+  ),
+  createData(100003, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
+  createData(100004, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
+  createData(
+    100005,
+    'GingerbreadGingerbreadGingerbreadGingerbread',
+    356,
+    'R$ 160,00',
+    'Finalizada',
+  ),
+  createData(100006, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa', <ViewIcon />),
+  createData(
+    100007,
+    'Ice cream sandwichIce cream sandwich',
+    237,
+    'R$ 900,00',
+    'Ativa',
+  ),
+  createData(100008, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
+  createData(100009, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
+  createData(
+    100010,
+    'GingerbreadGingerbreadGingerbreadGingerbread',
+    356,
+    'R$ 160,00',
+    'Finalizada',
+  ),
+  createData(100011, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa', <ViewIcon />),
+  createData(
+    100012,
+    'Ice cream sandwichIce cream sandwich',
+    237,
+    'R$ 900,00',
+    'Ativa',
+  ),
+  createData(100013, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
+  createData(100014, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
+  createData(
+    100015,
+    'GingerbreadGingerbreadGingerbreadGingerbread',
+    356,
+    'R$ 160,00',
+    'Finalizada',
+  ),
 ]
 
 export function RafflesList() {
+  const navigate = useNavigate()
+
   return (
     <Container>
       <TableContainer component={Paper}>
         <Table aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>Título</TableCell>
-              <TableCell className='unshow'>Comprados</TableCell>
-              <TableCell className='unshow'>Disponíveis</TableCell>
+              <TableCell className='size-collumn'>Título</TableCell>
+              <TableCell className='unshow'>Bilhetes</TableCell>
+              <TableCell className='unshow'>Arrecadação</TableCell>
               <TableCell>Status</TableCell>
-              <TableCell>Sorteio</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
               <TableRow
-                key={row.name}
+                key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component='th' scope='row'>
-                  {row.name}
+                <TableCell className='size-collumn'>{row.title}</TableCell>
+                <TableCell className='unshow'>{row.tickets_amount}</TableCell>
+                <TableCell className='unshow'>{row.money_amount}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>
+                  <ViewIcon
+                    onClick={() => {
+                      navigate('/admin/raffle-update')
+                    }}
+                  />
                 </TableCell>
-                <TableCell>{row.calories}</TableCell>
-                <TableCell className='unshow'>{row.fat}</TableCell>
-                <TableCell className='unshow'>{row.carbs}</TableCell>
-                <TableCell>{row.protein}</TableCell>
-                <TableCell>{row.view}</TableCell>
               </TableRow>
             ))}
           </TableBody>
