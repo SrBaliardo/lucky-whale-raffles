@@ -1,40 +1,27 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import VisibilityIcon from '@mui/icons-material/Visibility'
+import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet'
+
+const slide = keyframes`
+  0% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
+`
 
 export const Container = styled.div`
-  .css-y2ff7i-MuiPaper-root-MuiTableContainer-root {
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 20px;
+  position: relative;
 
-    .MuiTableCell-head {
-      background-color: #e0f5fe;
-      font-size: 16px;
-      font-weight: bold;
-      color: #3982b8;
-    }
+  .table-head {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3982b8;
+    background-color: #fafafa;
+  }
 
-    .MuiTableCell-body {
-      background-color: #ffffff;
-      font-size: 14px;
-      font-weight: bold;
-      color: #6c757d;
-    }
-
-    .size-collumn {
-      width: 900px !important;
-      max-width: 100% !important;
-      overflow-wrap: break-word;
-    }
-
-    @media (max-width: 430px) {
-      .unshow {
-        display: none;
-      }
-
-      .size-collumn {
-        max-width: 250px !important;
-      }
-    }
+  .break {
+    overflow-wrap: break-word;
   }
 `
 
@@ -44,5 +31,21 @@ export const ViewIcon = styled(VisibilityIcon)`
 
   &:hover {
     color: #ccff33;
+  }
+`
+
+export const Slide = styled(SettingsEthernetIcon)`
+  display: none !important;
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  transform: translateX(-50%);
+  animation: ${slide} 3s ease-in-out infinite;
+  z-index: 3;
+  color: #6c757d;
+  opacity: 0.5;
+
+  @media (max-width: 1024px) {
+    display: block !important;
   }
 `

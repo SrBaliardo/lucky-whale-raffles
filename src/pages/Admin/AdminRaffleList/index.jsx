@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { RafflesList, ButtonFilled, InputSelect } from '../../../../components'
+import { RafflesList, ButtonFilled, InputSelect } from '../../../components'
 import { Container, ContainerFilter, ContainerContent, Title } from './styles'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 

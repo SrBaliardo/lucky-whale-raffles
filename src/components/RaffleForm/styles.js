@@ -20,7 +20,6 @@ const gradientBg = keyframes`
 
 export const Form = styled.form`
   max-width: 100%;
-  width: 1130px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -32,6 +31,8 @@ export const Form = styled.form`
   border-radius: 5px;
   box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
   color: #000000;
+  line-height: 1.5;
+  font-size: 14px;
 
   input {
     width: 100%;
@@ -48,39 +49,72 @@ export const Form = styled.form`
     border-radius: 5px;
     color: #6c757d;
     padding: 10px;
+    line-height: 1.5;
   }
 
-  .date,
-  .price {
-    width: 100%;
+  .read-only {
+    background-color: #e0e0e0;
+    cursor: default;
+  }
+
+  .acc {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 0;
+  }
+
+  .content-img {
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .char-counter {
+    text-align: right;
+    color: #6c757d;
+    font-size: 11px;
   }
 `
 
+export const Subtitle = styled.h2`
+  margin-top: 20px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px;
+`
+
 export const ContainerContent = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  color: #000000;
+
+  .span-desc {
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .invisible {
+    visibility: hidden;
+  }
 `
 
 export const ContainerInfo = styled.div`
   display: flex;
   gap: 20px;
-`
+  justify-content: space-between;
 
-export const ContainerPrice = styled.div`
-  display: flex;
-  gap: 20px;
-  width: 225px;
-  align-self: center;
-
-  @media (max-width: 430px) {
-    width: 165px;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `
 
 export const ContainerImg = styled.div`
-  width: 300px !important;
-  height: 300px !important;
+  min-width: 300px;
+  height: 300px;
   border: 1px dashed #e0f5fe;
   border-radius: 8px;
   display: flex;
@@ -91,6 +125,11 @@ export const ContainerImg = styled.div`
     max-height: 100%;
     max-width: 100%;
     border-radius: 8px;
+  }
+
+  @media (max-width: 1024px) {
+    min-width: 200px;
+    height: 200px;
   }
 
   @media (max-width: 430px) {
@@ -124,16 +163,40 @@ export const UploadLabel = styled.label`
 export const ConfirmTermsInfo = styled.div`
   display: flex;
   flex-direction: column;
-
-  input {
-    width: fit-content;
-  }
+  margin-top: 20px;
 `
 
 export const ContainerCheck = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+
+  input {
+    width: fit-content;
+  }
+`
+export const ContainerAddress = styled.div`
+  display: flex;
+  gap: 20px;
+
+  button {
+    align-self: flex-end;
+    width: 100px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .cep {
+    width: 250px;
+  }
+
+  .number {
+    width: 80px;
+  }
+
+  .uf {
+    width: 110px;
+  }
 `
 
 export const ContainerButtons = styled.div`

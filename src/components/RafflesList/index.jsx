@@ -5,9 +5,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import Card from '@mui/material/Card'
-import { Container, ViewIcon } from './styles'
+import { Container, ViewIcon, Slide } from './styles'
 import { useNavigate } from 'react-router-dom'
 
 function createData(id, title, tickets_amount, money_amount, status) {
@@ -73,15 +71,16 @@ export function RafflesList() {
 
   return (
     <Container>
-      <TableContainer component={Paper}>
+      <Slide />
+      <TableContainer>
         <Table aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell className='size-collumn'>Título</TableCell>
-              <TableCell className='unshow'>Bilhetes</TableCell>
-              <TableCell className='unshow'>Arrecadação</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell></TableCell>
+              <TableCell className='table-head break'>Título</TableCell>
+              <TableCell className='table-head'>Bilhetes</TableCell>
+              <TableCell className='table-head'>Arrecadação</TableCell>
+              <TableCell className='table-head'>Status</TableCell>
+              <TableCell className='table-head'></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

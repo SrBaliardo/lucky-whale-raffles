@@ -172,6 +172,7 @@ export const AdvantageCard = styled.div`
   text-align: center;
   align-items: center;
   color: #ffffff;
+  line-height: 1.5;
 `
 
 export const EBookTitle = styled.h3`
@@ -205,6 +206,7 @@ export const EBookContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  line-height: 1.5;
 
   .div-eBook {
     display: flex;
@@ -290,6 +292,7 @@ export const CreateProcessCard = styled.div`
   animation: ${evidenceCard} 4s infinite;
   animation-fill-mode: forwards;
   color: #3982b8;
+  line-height: 1.5;
 `
 
 export const CreateProcessContent = styled.div`
@@ -385,6 +388,7 @@ export const FAQContent = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 50px;
+  line-height: 1.5;
 
   .faq {
     display: flex;

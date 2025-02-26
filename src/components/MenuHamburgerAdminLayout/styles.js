@@ -12,7 +12,7 @@ const fadeIn = keyframes`
 `
 
 export const MenuContainer = styled.div`
-  padding-bottom: 30px;
+  padding: 10px;
 `
 
 export const Hamburger = styled.div`
@@ -25,7 +25,7 @@ export const Hamburger = styled.div`
   div {
     width: 100%;
     height: 4px;
-    background-color: #fff;
+    background-color: #000000;
     border-radius: 7px;
     margin: 4px 0;
     transition: all 0.3s ease;
@@ -45,8 +45,7 @@ export const Hamburger = styled.div`
 `
 
 export const MenuList = styled.ul`
-  position: absolute;
-  right: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,7 +55,7 @@ export const MenuItem = styled.li`
   position: relative;
   width: 100%;
   padding: 10px;
-  background-color: #3982b8;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;

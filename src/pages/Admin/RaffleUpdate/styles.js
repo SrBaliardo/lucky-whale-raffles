@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ButtonFilled } from '../../../../components'
+import { ButtonFilled } from '../../../components'
 
 export const Container = styled.div`
   min-height: calc(100vh - 190px);
@@ -19,4 +19,5 @@ export const Title = styled.h1`
 
 export const Back = styled(ButtonFilled)`
   width: 110px;
+  margin-bottom: 20px;
 `

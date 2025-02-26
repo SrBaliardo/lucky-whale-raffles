@@ -31,6 +31,8 @@ export function Router() {
         <Route path='/restricted-area' element={<RestrictedArea />} />
         <Route path='/user-register' element={<RegisterAdmin />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/order-resume' element={<OrderResume />} />
+        <Route path='/order-completed' element={<OrderCompleted />} />
       </Route>
 
       <Route path='/admin' element={<AdminLayout />}>
@@ -41,8 +43,6 @@ export function Router() {
         <Route path='/admin/manage-territory' element={<ManageTerritory />} />
         <Route path='/admin/partners' element={<Partners />} />
         <Route path='/admin/change-password' element={<ChangePassword />} />
-        <Route path='/admin/order-resume' element={<OrderResume />} />
-        <Route path='/admin/order-completed' element={<OrderCompleted />} />
       </Route>
     </Routes>
   )

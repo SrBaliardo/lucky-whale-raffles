@@ -1,15 +1,27 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  min-height: calc(100vh - 190px);
+  height: 100%;
   width: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 230px;
   background-color: #ffffff;
+
+  @media (max-width: 1440px) {
+    padding: 20px 130px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 20px 80px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px 0;
+  }
 `
 
 export const Title = styled.h1`
@@ -62,7 +74,11 @@ export const ContainerFilter = styled.div`
     padding: 0 10px;
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     flex-direction: column;
+
+    button {
+      align-self: center;
+    }
   }
 `

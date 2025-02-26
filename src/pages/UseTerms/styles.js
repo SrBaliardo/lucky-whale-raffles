@@ -10,6 +10,7 @@ export const Container = styled.div`
   gap: 20px;
   padding: 20px 20px 0 20px;
   background-color: #ffffff;
+  line-height: 1.5;
 `
 
 export const AboutContent = styled.div`

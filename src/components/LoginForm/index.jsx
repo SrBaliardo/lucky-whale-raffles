@@ -19,7 +19,10 @@ export function LoginForm() {
         <input type='text' placeholder='Senha' />
       </ContainerLoginInfo>
 
-      <ButtonFilled type='button' onClick={() => navigate('/admin/dashboard')}>
+      <ButtonFilled
+        type='button'
+        onClick={() => navigate('/admin/raffle-list')}
+      >
         Entrar
       </ButtonFilled>
     </Form>

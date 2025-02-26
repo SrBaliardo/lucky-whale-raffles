@@ -1,12 +1,35 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const gradientBg = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  75% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`
 
 export const ContainerCardRaffle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  width: 250px;
-  height: 400px;
+  width: 300px;
+  height: 500px;
+  background: linear-gradient(-45deg, #ffffff, #b8e2f4, #6abce2, #46a2da);
+  background-size: 400% 400%;
+  animation: ${gradientBg} 7s linear infinite;
+  border-radius: 10px;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
   position: relative;
 `
 
@@ -17,9 +40,9 @@ export const ConteinerItems = styled.div`
   height: 80%;
   justify-content: space-around;
   background-color: #efefef;
-  border-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding: 15px 10px 10px 10px;
-  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 
   button {
     align-self: center;
@@ -30,7 +53,7 @@ export const Image = styled.img`
   width: 100px;
   height: 100px;
   position: absolute;
-  top: 15px;
+  top: 20px;
 `
 
 export const Title = styled.h2`
@@ -45,6 +68,8 @@ export const Description = styled.p`
   font-size: 14px;
   color: #6c757d;
   width: 100%;
+  line-height: 1.5;
+  margin-bottom: 50px;
 
   .litle {
     height: 100px;
@@ -79,8 +104,8 @@ export const Overlay = styled.div`
 `
 
 export const LargeCard = styled.div`
-  width: 800px;
-  height: 600px;
+  width: 80%;
+  height: 90%;
   background: #ffffff;
   border-radius: 15px;
   padding: 20px;
@@ -147,5 +172,21 @@ export const LargeCard = styled.div`
       align-content: center;
       border-radius: 8px;
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
+
+export const Countdown = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  margin: 50px 0;
+
+  span {
+    font-weight: normal;
+    color: #6c757d;
   }
 `

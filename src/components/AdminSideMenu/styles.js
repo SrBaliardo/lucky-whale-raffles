@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import BG from '../../assets/lucky-whale-waves-bg.png'
 
 export const Container = styled.div`
-  width: 300px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   gap: 20px;

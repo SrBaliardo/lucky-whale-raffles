@@ -9,7 +9,7 @@ import {
   DealImg,
 } from './styles'
 import Deal from '../../assets/deal.png'
-import Coding from '../../assets/c6bcd3e0db9e5d03fa06c3aef5d5ef2f.gif'
+import Coding from '../../assets/coding.gif'
 
 export function PrivacyPolicy() {
   const eMail = 'contato@luckywhaleraffles.com'

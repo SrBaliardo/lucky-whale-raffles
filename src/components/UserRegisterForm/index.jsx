@@ -29,6 +29,7 @@ export function UserRegisterForm() {
     formState: { errors },
   } = useForm()
 
+  /*TIRAR CEP DO CADASTRO, VAI FICAR NA RIFA*/
   const validateAndFetchCEP = async (cep) => {
     if (cep.length > 8) {
       alert('CEP deve ter no máximo 8 dígitos.')

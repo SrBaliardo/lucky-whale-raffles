@@ -21,13 +21,13 @@ export function AdminSideMenu() {
         <img src={LuckyWhale} />
 
         <MenuItems>
-          <MenuLink
+          {/* <MenuLink
             onClick={() => navigate('/admin/dashboard')}
             $isActive={pathname.includes('admin/dashboard')}
           >
             <DashboardIcon />
             Dashboard
-          </MenuLink>
+          </MenuLink> */}
           <MenuLink
             onClick={() => navigate('/admin/raffle-list')}
             $isActive={pathname.includes('list')}

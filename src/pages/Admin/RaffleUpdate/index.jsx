@@ -1,5 +1,5 @@
 import { Container, Title, Back } from './styles'
-import { RaffleUpdateForm } from '../../../../components'
+import { RaffleUpdateForm } from '../../../components'
 import UndoIcon from '@mui/icons-material/Undo'
 
 export function RaffleUpdate() {

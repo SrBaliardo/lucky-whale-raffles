@@ -7,21 +7,27 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 20px 250px;
   background-color: #ffffff;
+
+  @media (max-width: 1440px) {
+    padding: 20px 150px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 20px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `
 
 export const Title = styled.h1`
-  margin-top: 20px;
+  width: 100%;
   color: #6c757d;
   font-size: 24px;
   padding: 10px;
-`
-
-export const Subtitle = styled.h2`
-  margin-top: 20px;
-  color: #6c757d;
-  font-size: 14px;
+  text-align: left;
   font-weight: 500;
-  padding: 10px;
 `

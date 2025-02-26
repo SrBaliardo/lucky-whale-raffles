@@ -8,13 +8,14 @@ import {
   DrawPrice,
   Overlay,
   LargeCard,
+  Countdown,
 } from './styles'
 import { ButtonBordered } from '../../components'
 import { useNavigate } from 'react-router-dom'
 import LocalActivityIcon from '@mui/icons-material/LocalActivity'
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
-import DefaultImg from '../../assets/default-user.png'
+import DefaultImg from '../../assets/lucky-whale-icon.png'
 import DefaultImg2 from '../../assets/default-prize.png'
 
 export function RaffleCard({}) {
@@ -78,10 +79,7 @@ export function RaffleCard({}) {
       {isLarge && (
         <Overlay onClick={closeLargeCard}>
           <LargeCard onClick={(e) => e.stopPropagation()}>
-            <Image src={DefaultImg} alt='product-large-image' />
-            <DrawPrice>
-              Até o sorteio <span>*regressiva em dias e horas*</span>
-            </DrawPrice>
+            <Image src={DefaultImg} alt='beneficiary-large-image' />
 
             <Title>*título da rifa*</Title>
 
@@ -102,23 +100,6 @@ export function RaffleCard({}) {
               cupiditate laboriosam ipsum repellat ex quisquam ipsam sed
               tempore, numquam, commodi nemo!
             </Description>
-
-            <div className='prize-title'>
-              <EmojiEventsIcon />
-              <Title> Prêmio</Title>
-            </div>
-
-            <Description>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Accusantium quas nesciunt iure obcaecati facere eum non ea hic,
-              cum officiis fugit, officia debitis expedita libero architecto!
-              Itaque unde distinctio iusto?
-            </Description>
-            <Image
-              className='prize-image'
-              src={DefaultImg2}
-              alt='product-large-image'
-            />
 
             <DrawPrice>
               Sorteio <span>10/10/2025</span> - <span>15:30</span>
@@ -145,9 +126,31 @@ export function RaffleCard({}) {
               <ButtonBordered onClick={handleIncrement}>+</ButtonBordered>
             </div>
 
-            <ButtonBordered onClick={handleAddToCart}>
+            <ButtonBordered type='button'>
+              {/* <ButtonBordered onClick={handleAddToCart}> */}
               Comprar &nbsp; <LocalActivityIcon />
             </ButtonBordered>
+
+            <div className='prize-title'>
+              <EmojiEventsIcon />
+              <Title> Prêmio</Title>
+            </div>
+
+            <Description>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Accusantium quas nesciunt iure obcaecati facere eum non ea hic,
+              cum officiis fugit, officia debitis expedita libero architecto!
+              Itaque unde distinctio iusto?
+            </Description>
+            <Image
+              className='prize-image'
+              src={DefaultImg2}
+              alt='prize-large-image'
+            />
+
+            <Countdown>
+              Até o sorteio <span>*regressiva em dias e horas*</span>
+            </Countdown>
           </LargeCard>
         </Overlay>
       )}
