@@ -47,7 +47,7 @@ export const ContainerFilter = styled.div`
     width: 80px;
     background-color: #cf3057;
     border-color: #cf3057 !important;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 20px;
     align-self: flex-end;
     &:hover {

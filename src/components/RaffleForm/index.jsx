@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import {
   Form,
   Subtitle,
@@ -13,12 +14,23 @@ import {
   ContainerButtons,
 } from './styles'
 import { ButtonFilled } from '../../components'
+import { maskPhone } from '../../utils/phoneMask'
 import PermMediaIcon from '@mui/icons-material/PermMedia'
 import DefaultImage from '../../assets/lucky-whale-icon.png'
 import DefaultImage2 from '../../assets/default-prize.png'
 import SearchIcon from '@mui/icons-material/Search'
 
+function fileToDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = () => reject(new Error('File reading failed'))
+    reader.readAsDataURL(file)
+  })
+}
+
 export function RaffleForm() {
+  const [phone, setPhone] = useState('')
   const [cepData, setCepData] = useState(false)
   const [raffleFile, setRaffleFile] = useState(null)
   const [raffleImageURL, setRaffleImageURL] = useState(DefaultImage)
@@ -27,6 +39,7 @@ export function RaffleForm() {
   const [raffleDescription, setRaffleDescription] = useState('')
   const [prizeDescription, setPrizeDescription] = useState('')
   const maxLength = 1540
+  const navigate = useNavigate()
 
   const defaultTicketValue = 'R$ 10,00'
 
@@ -36,6 +49,43 @@ export function RaffleForm() {
     handleSubmit,
     formState: { errors },
   } = useForm()
+
+  useEffect(() => {
+    const storedPreview = sessionStorage.getItem('previewData')
+    if (storedPreview) {
+      const data = JSON.parse(storedPreview)
+      setRaffleDescription(data.raffleDescription || '')
+      setPrizeDescription(data.prizeDescription || '')
+      setValue('title', data.title || '')
+      setValue('beneficiary', data.beneficiary || '')
+      setValue('drawDate', data.drawDate || '')
+      setValue('ticketPrice', data.ticketPrice || defaultTicketValue)
+      setValue('bankAccountName', data.bankAccountName || '')
+      setValue('bankAccountId', data.bankAccountId || '')
+      setValue('bankAccountInstitution', data.bankAccountInstitution || '')
+      setValue('bankAccountAgency', data.bankAccountAgency || '')
+      setValue('bankAccountNumber', data.bankAccountNumber || '')
+      setValue('bankAccountNumberDigit', data.bankAccountNumberDigit || '')
+      setValue('bankAccountKey', data.bankAccountKey || '')
+      setValue('bankAccountSavings', data.bankAccountSavings || '')
+      setValue('cep', data.cep || '')
+      setValue('street', data.street || '')
+      setValue('streetNumber', data.streetNumber || '')
+      setValue('complement', data.complement || '')
+      setValue('neighborhood', data.neighborhood || '')
+      setValue('city', data.city || '')
+      setValue('uf', data.uf || '')
+      if (data.phone) setPhone(data.phone)
+      if (data.raffleImageURL) setRaffleImageURL(data.raffleImageURL)
+      if (data.prizeImageURL) setPrizeImageURL(data.prizeImageURL)
+      if (data.cep) setCepData(true)
+    }
+  }, [setValue])
+
+  const handleChange = (e) => {
+    const formatted = maskPhone(e.target.value)
+    setPhone(formatted)
+  }
 
   const getDefaultDateTime = () => {
     const today = new Date()
@@ -63,19 +113,21 @@ export function RaffleForm() {
     return `${year}-${month}-${day}T23:59`
   }
 
-  const handleRaffleFileChange = (event) => {
+  const handleRaffleFileChange = async (event) => {
     const file = event.target.files[0]
     if (file) {
       setRaffleFile(file)
-      setRaffleImageURL(URL.createObjectURL(file))
+      const dataUrl = await fileToDataURL(file)
+      setRaffleImageURL(dataUrl)
     }
   }
 
-  const handlePrizeFileChange = (event) => {
+  const handlePrizeFileChange = async (event) => {
     const file = event.target.files[0]
     if (file) {
       setPrizeFile(file)
-      setPrizeImageURL(URL.createObjectURL(file))
+      const dataUrl = await fileToDataURL(file)
+      setPrizeImageURL(dataUrl)
     }
   }
 
@@ -119,6 +171,66 @@ export function RaffleForm() {
     }
   }
 
+  const calculateCountdown = (drawDateString) => {
+    const targetDate = new Date(drawDateString)
+    const now = new Date()
+    const diff = targetDate.getTime() - now.getTime()
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
+    const minutes = Math.floor((diff / (1000 * 60)) % 60)
+    const seconds = Math.floor((diff / 1000) % 60)
+    return { days, hours, minutes, seconds }
+  }
+
+  /*PRÉ VISUALIZAÇÃO*/
+  const handlePreview = handleSubmit((data) => {
+    const drawDate = data.drawDate || getDefaultDateTime()
+    const countdown = calculateCountdown(drawDate)
+    const previewData = {
+      ...data,
+      phone,
+      raffleDescription,
+      prizeDescription,
+      raffleImageURL,
+      prizeImageURL,
+      drawDate,
+      countdown,
+    }
+    sessionStorage.setItem('previewData', JSON.stringify(previewData))
+    navigate('/admin/raffle-preview', { state: { previewData } })
+  })
+
+  const handleRegister = handleSubmit((data) => {
+    if (!data.termsPrivacy_Use || !data.termsTrueInformation) {
+      alert(
+        'Você deve aceitar os Termos de Privacidade e os Termos de Uso para registrar.',
+      )
+      return
+    }
+    data.bankAccountSavings = data.bankAccountSavings ? true : false
+    const drawDate = data.drawDate || getDefaultDateTime()
+    const countdown = calculateCountdown(drawDate)
+    const previewData = {
+      ...data,
+      raffleDescription,
+      prizeDescription,
+      raffleImageURL,
+      prizeImageURL,
+      drawDate,
+      countdown,
+      termsPrivacy_Use: true,
+      termsTrueInformation: true,
+    }
+    alert('Rifa registrada com sucesso')
+    console.log('Registrando com os dados:', previewData)
+    sessionStorage.removeItem('previewData')
+    navigate('/admin/raffle-list')
+    //navigate('/admin/success', { state: { previewData } })
+  })
+
   return (
     <Form>
       <Subtitle>
@@ -136,14 +248,19 @@ export function RaffleForm() {
           Título da rifa <span>*</span>
         </label>
         <span className='span-desc'>Dê um nome para sua campanha</span>
-        <input type='text' />
+        <input type='text' {...register('title')} />
       </ContainerContent>
 
       <ContainerContent>
         <label>
-          Celular para contato <span>*</span> {/* COLOCAR MASCARA DDD */}
+          Celular para contato <span>*</span>
         </label>
-        <input type='text' />
+        <input
+          type='text'
+          value={phone}
+          onChange={handleChange}
+          inputMode='numeric'
+        />
       </ContainerContent>
 
       <ContainerContent>
@@ -169,7 +286,7 @@ export function RaffleForm() {
           Quem será o beneficiado pela rifa <span>*</span>
         </label>
         <span className='span-desc'>Pessoa ou instituição</span>
-        <input type='text' />
+        <input type='text' {...register('beneficiary')} />
       </ContainerContent>
 
       <ContainerInfo className='content-img'>
@@ -196,7 +313,7 @@ export function RaffleForm() {
         </ContainerContent>
 
         <ContainerImg>
-          <img src={raffleImageURL} alt='image' />
+          <img src={raffleImageURL} alt='raffle-image' />
         </ContainerImg>
       </ContainerInfo>
 
@@ -241,14 +358,14 @@ export function RaffleForm() {
         </ContainerContent>
 
         <ContainerImg>
-          <img src={prizeImageURL} alt='image' />
+          <img src={prizeImageURL} alt='prize-image' />
         </ContainerImg>
       </ContainerInfo>
 
       <ContainerInfo>
         <ContainerContent>
           <label>
-            Data do Sorteio (horário de Brasília) <span>*</span>
+            Data do Sorteio <span>*</span>
           </label>
           <span className='span-desc'>
             Não pode ser inferior a 15 dias e nem superior a 90 dias
@@ -258,6 +375,7 @@ export function RaffleForm() {
             defaultValue={getDefaultDateTime()}
             min={getMinDateTime()}
             max={getMaxDateTime()}
+            {...register('drawDate')}
           />
         </ContainerContent>
 
@@ -272,6 +390,7 @@ export function RaffleForm() {
             type='text'
             value={defaultTicketValue}
             readOnly
+            {...register('ticketPrice')}
           />
         </ContainerContent>
       </ContainerInfo>
@@ -285,14 +404,14 @@ export function RaffleForm() {
           <label>
             Nome do titular <span>*</span>
           </label>
-          <input type='text' />
+          <input type='text' {...register('bankAccountName')} />
         </ContainerContent>
 
         <ContainerContent>
           <label>
             CPF ou CNPJ do titular <span>*</span>
           </label>
-          <input type='text' />
+          <input type='text' {...register('bankAccountId')} />
         </ContainerContent>
       </ContainerInfo>
 
@@ -302,7 +421,7 @@ export function RaffleForm() {
             Banco <span>*</span>
           </label>
           <span className='invisible'>Nome da instituição</span>
-          <input type='text' />
+          <input type='text' {...register('bankAccountInstitution')} />
         </ContainerContent>
 
         <ContainerContent>
@@ -310,7 +429,7 @@ export function RaffleForm() {
             Agência <span>*</span>
           </label>
           <span className='span-desc'>sem o dígito</span>
-          <input type='text' />
+          <input type='text' {...register('bankAccountAgency')} />
         </ContainerContent>
       </ContainerInfo>
 
@@ -320,7 +439,7 @@ export function RaffleForm() {
             Número da conta <span>*</span>
           </label>
           <span className='span-desc'>sem o dígito</span>
-          <input type='text' />
+          <input type='text' {...register('bankAccountNumber')} />
         </ContainerContent>
 
         <ContainerContent>
@@ -328,7 +447,7 @@ export function RaffleForm() {
             Dígito da conta <span>*</span>
           </label>
           <span className='span-desc'>somente o dígito</span>
-          <input type='text' />
+          <input type='text' {...register('bankAccountNumberDigit')} />
         </ContainerContent>
       </ContainerInfo>
 
@@ -337,11 +456,11 @@ export function RaffleForm() {
           Chave PIX <span>*</span>
         </label>
         <span className='span-desc'>Preferencialmente e-mail</span>
-        <input type='text' />
+        <input type='text' {...register('bankAccountKey')} />
       </ContainerContent>
 
       <ContainerCheck>
-        <input type='checkbox' />
+        <input type='checkbox' {...register('bankAccountSavings')} />
         <label>Conta poupança</label>
       </ContainerCheck>
 
@@ -374,7 +493,7 @@ export function RaffleForm() {
             </ContainerContent>
             <ContainerContent className='number'>
               <label>Número</label>
-              <input type='text' {...register('street-number')} />
+              <input type='text' {...register('streetNumber')} />
             </ContainerContent>
           </ContainerAddress>
           <ContainerContent>
@@ -416,7 +535,7 @@ export function RaffleForm() {
 
       <ConfirmTermsInfo>
         <ContainerCheck>
-          <input type='checkbox' />
+          <input type='checkbox' {...register('termsPrivacy_Use')} />
           <p>
             Confirmo que li e concordo com os{' '}
             <a href='#'>Termos de Privacidade</a> e{' '}
@@ -425,7 +544,7 @@ export function RaffleForm() {
         </ContainerCheck>
 
         <ContainerCheck>
-          <input type='checkbox' />
+          <input type='checkbox' {...register('termsTrueInformation')} />
           <p>
             Declaro que as informações neste formulário são verdadeiras e com
             objetivo beneficente e sem fins lucrativos.
@@ -434,7 +553,12 @@ export function RaffleForm() {
       </ConfirmTermsInfo>
 
       <ContainerButtons>
-        <ButtonFilled type='button'>Registrar</ButtonFilled>
+        <ButtonFilled type='button' onClick={handlePreview}>
+          Pré-visualização
+        </ButtonFilled>
+        <ButtonFilled type='button' onClick={handleRegister}>
+          Registrar
+        </ButtonFilled>
       </ContainerButtons>
     </Form>
   )

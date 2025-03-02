@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  height: calc(100vh - 190px);
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,4 +10,8 @@ export const Container = styled.div`
   gap: 20px;
   padding: 20px;
   background-color: #ffffff;
+
+  img {
+    width: 100px;
+  }
 `

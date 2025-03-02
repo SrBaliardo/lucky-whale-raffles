@@ -1,14 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ContainerCardRaffle,
   ConteinerItems,
-  Image,
+  RaffleImage,
+  PrizeImage,
   Title,
   Description,
   DrawPrice,
   Overlay,
   LargeCard,
   Countdown,
+  GrantSection,
+  WhaleShieldImage,
+  L_W,
+  W_S,
+  Section,
 } from './styles'
 import { ButtonBordered } from '../../components'
 import { useNavigate } from 'react-router-dom'
@@ -17,11 +23,53 @@ import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import DefaultImg from '../../assets/lucky-whale-icon.png'
 import DefaultImg2 from '../../assets/default-prize.png'
+import WhaleShield from '../../assets/whale-shield.png'
+import { formatDate } from '../../utils/formatDate'
+
+function formatISODate(date) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  return `${year}-${month}-${day}T${hours}:${minutes}`
+}
 
 export function RaffleCard({}) {
   const navigate = useNavigate()
   const [isLarge, setIsLarge] = useState(false)
   const [counter, setCounter] = useState(0)
+
+  const drawDate = formatISODate(new Date(Date.now() + 24 * 60 * 60 * 1000))
+
+  // useEffect(() => {
+  //   console.log('Preview Data:', previewData)
+  // }, [previewData])
+
+  function calculateCountdown(drawDateString) {
+    const targetDate = new Date(drawDateString)
+    const now = new Date()
+    const diff = targetDate.getTime() - now.getTime()
+    if (diff <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
+    const minutes = Math.floor((diff / (1000 * 60)) % 60)
+    const seconds = Math.floor((diff / 1000) % 60)
+    return { days, hours, minutes, seconds }
+  }
+
+  const [currentCountdown, setCurrentCountdown] = useState(
+    calculateCountdown(drawDate),
+  )
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCountdown(calculateCountdown(drawDate))
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [drawDate])
 
   const handleIncrement = () => {
     if (counter !== 99) {
@@ -55,23 +103,26 @@ export function RaffleCard({}) {
   return (
     <>
       <ContainerCardRaffle>
-        <Image src={DefaultImg} alt='product-offer-image' />
+        <RaffleImage src={DefaultImg} alt='product-offer-image' />
         <ConteinerItems>
           <Title>*título da rifa*</Title>
           <Description className='litle'>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere,
             incidunt voluptatibus dignissimos ex commodi repellendus eius
             repellat exercitationem voluptate, culpa facilis numquam eaque, nam
-            cum ducimus magnam porro? Necessitatibus, ea!
+            cum ducimus magnam porro? Necessitatibus, ea! Lorem ipsum dolor sit
+            amet consectetur, adipisicing elit. Facere, incidunt voluptatibus
+            dignissimos ex commodi repellendus eius repellat exercitationem
+            voluptate, culpa facilis numquam eaque, nam cum ducimus magnam
+            porro? Necessitatibus, ea!
           </Description>
           <DrawPrice>
-            Sorteio <span>10/10/2025</span> - <span>15:30</span>
-          </DrawPrice>
-          <DrawPrice>
+            Sorteio <span>{formatDate(drawDate)}</span>
+            <br />
             Preço <span>R$10,00</span>
           </DrawPrice>
           <ButtonBordered onClick={handleCardClick}>
-            Ver mais &nbsp; <ZoomOutMapIcon />
+            Mais detalhes &nbsp; <ZoomOutMapIcon />
           </ButtonBordered>
         </ConteinerItems>
       </ContainerCardRaffle>
@@ -79,32 +130,17 @@ export function RaffleCard({}) {
       {isLarge && (
         <Overlay onClick={closeLargeCard}>
           <LargeCard onClick={(e) => e.stopPropagation()}>
-            <Image src={DefaultImg} alt='beneficiary-large-image' />
+            <RaffleImage src={DefaultImg} alt='beneficiary-large-image' />
 
-            <Title>*título da rifa*</Title>
+            <Section className='section'>
+              <Title>{'título da rifa'}</Title>
 
-            <Description>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              sit officia itaque nesciunt? Blanditiis, vero dignissimos. Iste
-              iure cupiditate laboriosam ipsum repellat ex quisquam ipsam sed
-              tempore, numquam, commodi nemo! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Deleniti sit officia itaque
-              nesciunt? Blanditiis, vero dignissimos. Iste iure cupiditate
-              laboriosam ipsum repellat ex quisquam ipsam sed tempore, numquam,
-              commodi nemo! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Deleniti sit officia itaque nesciunt? Blanditiis, vero
-              dignissimos. Iste iure cupiditate laboriosam ipsum repellat ex
-              quisquam ipsam sed tempore, numquam, commodi nemo! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Deleniti sit officia
-              itaque nesciunt? Blanditiis, vero dignissimos. Iste iure
-              cupiditate laboriosam ipsum repellat ex quisquam ipsam sed
-              tempore, numquam, commodi nemo!
-            </Description>
+              <Description>{'descrição da rifa'}</Description>
+            </Section>
 
             <DrawPrice>
-              Sorteio <span>10/10/2025</span> - <span>15:30</span>
-            </DrawPrice>
-            <DrawPrice>
+              Sorteio <span>{formatDate(drawDate) || ''}</span>
+              <br />
               Preço <span>R$10,00</span>
             </DrawPrice>
 
@@ -131,26 +167,67 @@ export function RaffleCard({}) {
               Comprar &nbsp; <LocalActivityIcon />
             </ButtonBordered>
 
-            <div className='prize-title'>
-              <EmojiEventsIcon />
-              <Title> Prêmio</Title>
-            </div>
+            <Section className='section'>
+              <div className='prize-title'>
+                <EmojiEventsIcon />
+                <Title>Prêmio</Title>
+              </div>
 
-            <Description>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Accusantium quas nesciunt iure obcaecati facere eum non ea hic,
-              cum officiis fugit, officia debitis expedita libero architecto!
-              Itaque unde distinctio iusto?
-            </Description>
-            <Image
-              className='prize-image'
-              src={DefaultImg2}
-              alt='prize-large-image'
-            />
+              <Description>{'descrição do prêmio'}</Description>
+              <PrizeImage src={DefaultImg2} alt='prize-large-image' />
+            </Section>
 
             <Countdown>
-              Até o sorteio <span>*regressiva em dias e horas*</span>
+              <div className='div-countdown'>
+                <div className='countdown'>
+                  <span className='count'>{currentCountdown.days}</span>
+                  <span className='text'>dias</span>
+                </div>
+                <div className='countdown'>
+                  <span className='count'>{currentCountdown.hours}</span>
+                  <span className='text'>horas</span>
+                </div>
+                <div className='countdown'>
+                  <span className='count'>{currentCountdown.minutes}</span>
+                  <span className='text'>minutos</span>
+                </div>
+                <div className='countdown'>
+                  <span className='count'>{currentCountdown.seconds}</span>
+                  <span className='text'>segundos</span>
+                </div>
+              </div>
+              <br />
+              Até o sorteio
             </Countdown>
+
+            <Section>
+              <GrantSection>
+                <W_S>
+                  <span>WHALE</span> SHIELD
+                </W_S>
+                <WhaleShieldImage src={WhaleShield} alt='whale-shield-image' />
+                <p>
+                  <W_S>
+                    <span>WHALE</span> SHIELD
+                  </W_S>{' '}
+                  é o selo de segurança da{' '}
+                  <L_W>
+                    <span>LUCKY</span> WHALE
+                  </L_W>
+                  .
+                  <br />
+                  Acompanhamos todo o processo de cada rifa para garantir a
+                  segurança e credibilidade. O resultado das rifas e a devida
+                  entrega dos prêmios aos ganhadores também são monitorados de
+                  perto. Se for identificada fraude por parte do organizador ou
+                  se a campanha estiver em desacordo com os Termos de Uso e
+                  Privacidade, Tomamos as devidas providências e a campanha pode
+                  ser cancelada e os doadores receberão de volta o valor doado.
+                  Estamos em constante monitoramento para evitar fraudes e
+                  garantir a segurança dos usuários.
+                </p>
+              </GrantSection>
+            </Section>
           </LargeCard>
         </Overlay>
       )}

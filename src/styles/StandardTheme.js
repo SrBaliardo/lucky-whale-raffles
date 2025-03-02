@@ -14,9 +14,10 @@ export const standardTheme = {
   mainBlack: '#373435',
   gray: '#6c757d',
   E9: '#e9e9e9',
+  darkWhite: '#f4f4f4',
+  orange: '#ff8c05',
 
   darkPurple: '#5c2669',
-  orange: '#ff8c05',
   black: '#363636',
   secondBlack: '#484848',
   lightGray: '#cdcdcd',
@@ -24,5 +25,4 @@ export const standardTheme = {
   darkRed: '#cf3057',
   white: '#fff',
   secondWhite: '#f0f0f0',
-  darkWhite: '#f4f4f4',
 }

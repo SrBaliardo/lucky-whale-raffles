@@ -13,19 +13,19 @@ function createData(id, title, tickets_amount, money_amount, status) {
 }
 
 const rows = [
-  createData(100001, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa'),
+  createData(100001, 'Tratamento do Paulim', 159, 'R$ 600,00', 'Ativa'),
   createData(
     100002,
-    'Ice cream sandwichIce cream sandwich',
+    'Comprar mantimentos para moradores de rua',
     237,
     'R$ 900,00',
     'Ativa',
   ),
-  createData(100003, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
-  createData(100004, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
+  createData(100003, 'dogS.O.S', 262, 'R$ 160,00', 'Finalizada'),
+  createData(100004, 'Casa do vovô', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
   createData(
     100005,
-    'GingerbreadGingerbreadGingerbreadGingerbread',
+    'Comprar uma cadeira de rodas nova pra Leandrinha',
     356,
     'R$ 160,00',
     'Finalizada',
@@ -33,36 +33,19 @@ const rows = [
   createData(100006, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa', <ViewIcon />),
   createData(
     100007,
-    'Ice cream sandwichIce cream sandwich',
+    'Preciso voltar pra terrinha, me ajudem',
     237,
     'R$ 900,00',
     'Ativa',
   ),
-  createData(100008, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
-  createData(100009, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
+  createData(100008, 'Roberto Carlos', 262, 'R$ 160,00', 'Finalizada'),
   createData(
-    100010,
-    'GingerbreadGingerbreadGingerbreadGingerbread',
-    356,
-    'R$ 160,00',
-    'Finalizada',
-  ),
-  createData(100011, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa', <ViewIcon />),
-  createData(
-    100012,
-    'Ice cream sandwichIce cream sandwich',
-    237,
-    'R$ 900,00',
+    100009,
+    'Igreja da Revoada do 15º dia',
+    305,
+    'R$ 370,00',
     'Ativa',
-  ),
-  createData(100013, 'EclairEclair', 262, 'R$ 160,00', 'Finalizada'),
-  createData(100014, 'Cupcake', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
-  createData(
-    100015,
-    'GingerbreadGingerbreadGingerbreadGingerbread',
-    356,
-    'R$ 160,00',
-    'Finalizada',
+    <ViewIcon />,
   ),
 ]
 

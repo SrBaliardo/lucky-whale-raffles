@@ -18,7 +18,7 @@ export const HeaderContainer = styled.header`
     display: none;
   }
 
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     .hamburger {
       display: block;
       margin: 25px 25px 0 0;
@@ -29,7 +29,7 @@ export const HeaderContainer = styled.header`
 export const Logo = styled.img`
   width: 90px;
 
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     width: 70px;
   }
 `
@@ -38,7 +38,7 @@ export const NavContainer = styled.div`
   display: flex;
   gap: 15px;
 
-  @media (max-width: 430px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `

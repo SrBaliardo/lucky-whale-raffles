@@ -66,6 +66,7 @@ export const Form = styled.form`
   .content-img {
     @media (max-width: 768px) {
       flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -113,8 +114,8 @@ export const ContainerInfo = styled.div`
 `
 
 export const ContainerImg = styled.div`
-  min-width: 300px;
-  height: 300px;
+  width: 100%;
+  max-width: 300px;
   border: 1px dashed #e0f5fe;
   border-radius: 8px;
   display: flex;
@@ -122,18 +123,12 @@ export const ContainerImg = styled.div`
   justify-content: center;
 
   img {
-    max-height: 100%;
-    max-width: 100%;
+    width: 100%;
     border-radius: 8px;
   }
 
-  @media (max-width: 1024px) {
-    min-width: 200px;
-    height: 200px;
-  }
-
-  @media (max-width: 430px) {
-    height: 110px !important;
+  @media (max-width: 768px) {
+    width: 200px;
   }
 `
 

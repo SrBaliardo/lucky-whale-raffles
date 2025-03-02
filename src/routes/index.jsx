@@ -12,6 +12,7 @@ import {
   AdminRaffleList,
   UserDashboard,
   RaffleRegister,
+  RafflePreview,
   RaffleUpdate,
   ManageTerritory,
   Partners,
@@ -39,6 +40,7 @@ export function Router() {
         <Route path='/admin/dashboard' element={<UserDashboard />} />
         <Route path='/admin/raffle-list' element={<AdminRaffleList />} />
         <Route path='/admin/raffle-register' element={<RaffleRegister />} />
+        <Route path='/admin/raffle-preview' element={<RafflePreview />} />
         <Route path='/admin/raffle-update' element={<RaffleUpdate />} />
         <Route path='/admin/manage-territory' element={<ManageTerritory />} />
         <Route path='/admin/partners' element={<Partners />} />

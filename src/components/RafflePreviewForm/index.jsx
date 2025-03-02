@@ -24,29 +24,21 @@ import DefaultImg2 from '../../assets/default-prize.png'
 import WhaleShield from '../../assets/whale-shield.png'
 import { formatDate } from '../../utils/formatDate'
 
-function formatISODate(date) {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  return `${year}-${month}-${day}T${hours}:${minutes}`
-}
-
-export function RaffleUpdateForm({ previewData }) {
+export function RafflePreviewForm({ previewData }) {
   const [disabled, setDisabled] = useState(true)
-  const [drawn, setDrawn] = useState(false)
-  const drawDate = formatISODate(new Date(Date.now() + 24 * 60 * 60 * 1000))
+  const [currentCountdown, setCurrentCountdown] = useState(
+    previewData.countdown,
+  )
 
-  // useEffect(() => {
-  //   console.log('Preview Data:', previewData)
-  // }, [previewData])
+  useEffect(() => {
+    console.log('Preview Data:', previewData)
+  }, [previewData])
 
   useEffect(() => {
     setDisabled(disabled)
   }, [])
 
-  function calculateCountdown(drawDateString) {
+  const calculateCountdown = (drawDateString) => {
     const targetDate = new Date(drawDateString)
     const now = new Date()
     const diff = targetDate.getTime() - now.getTime()
@@ -60,28 +52,30 @@ export function RaffleUpdateForm({ previewData }) {
     return { days, hours, minutes, seconds }
   }
 
-  const [currentCountdown, setCurrentCountdown] = useState(
-    calculateCountdown(drawDate),
-  )
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCountdown(calculateCountdown(drawDate))
+      const newCountdown = calculateCountdown(previewData.drawDate)
+      setCurrentCountdown(newCountdown)
     }, 1000)
     return () => clearInterval(interval)
-  }, [drawDate])
+  }, [previewData.drawDate])
 
   return (
     <Form>
-      <RaffleImage src={DefaultImg} alt='beneficiary-large-image' />
+      <RaffleImage
+        src={previewData.raffleImageURL || DefaultImg}
+        alt='beneficiary-large-image'
+      />
       <Section className='section'>
-        <Title>{'título da rifa'}</Title>
+        <Title>{previewData.title || 'título da rifa'}</Title>
 
-        <Description>{'descrição da rifa'}</Description>
+        <Description>
+          {previewData.raffleDescription || 'descrição da rifa'}
+        </Description>
       </Section>
 
       <DrawPrice>
-        Sorteio <span>{formatDate(drawDate) || ''}</span>
+        Sorteio <span>{formatDate(previewData.drawDate) || ''}</span>
       </DrawPrice>
       <DrawPrice>
         Preço <span>R$10,00</span>
@@ -115,8 +109,13 @@ export function RaffleUpdateForm({ previewData }) {
           <Title>Prêmio</Title>
         </div>
 
-        <Description>{'descrição do prêmio'}</Description>
-        <PrizeImage src={DefaultImg2} alt='prize-large-image' />
+        <Description>
+          {previewData.prizeDescription || 'descrição do prêmio'}
+        </Description>
+        <PrizeImage
+          src={previewData.prizeImageURL || DefaultImg2}
+          alt='prize-large-image'
+        />
       </Section>
 
       <Countdown>
@@ -141,37 +140,6 @@ export function RaffleUpdateForm({ previewData }) {
         <br />
         Até o sorteio
       </Countdown>
-
-      <Section className='drawn-data'>
-        <ButtonFilled
-          type='button'
-          $disabled={disabled}
-          onClick={() => {
-            setDrawn(true)
-            alert('DEMO-CLICK, só vai liberar quando contador zerar')
-          }}
-        >
-          Sortear
-        </ButtonFilled>
-
-        {drawn && (
-          <ContainerInfo>
-            <ContainerContent>
-              <label>
-                Bilhete Sorteado <span>*</span>
-              </label>
-              <input type='text' className='form' />
-            </ContainerContent>
-
-            <ContainerContent>
-              <label>
-                Ganhador <span>*</span>
-              </label>
-              <input type='text' className='form' />
-            </ContainerContent>
-          </ContainerInfo>
-        )}
-      </Section>
 
       <Section>
         <GrantSection>

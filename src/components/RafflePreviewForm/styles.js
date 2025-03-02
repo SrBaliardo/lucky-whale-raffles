@@ -18,115 +18,19 @@ const gradientBg = keyframes`
   }
 `
 
-export const ContainerCardRaffle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  width: 300px;
-  height: 500px;
-  background: linear-gradient(-45deg, #ffffff, #b8e2f4, #6abce2, #46a2da);
-  background-size: 400% 400%;
-  animation: ${gradientBg} 7s linear infinite;
-  border-radius: 10px;
-  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-  position: relative;
-
-  .litle {
-    max-height: 60px;
-    overflow: hidden;
-    margin-bottom: 0;
-  }
-`
-
-export const ConteinerItems = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 80%;
-  justify-content: space-around;
-  background-color: #efefef;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 15px 10px 10px 10px;
-
-  button {
-    align-self: center;
-    text-transform: uppercase;
-    font-size: 14px;
-  }
-`
-
-export const RaffleImage = styled.img`
-  width: 120px;
-  height: 120px;
-  position: absolute;
-  top: 40px;
-`
-
-export const PrizeImage = styled.img`
-  width: 600px;
-  max-width: 100%;
-`
-
-export const Title = styled.h2`
-  font-size: 16px;
-  font-weight: bold;
-  color: #f59705;
-  margin-top: 30px;
-  text-align: center;
-`
-
-export const Description = styled.p`
-  font-size: 14px;
-  color: #6c757d;
-  width: 100%;
-  line-height: 1.5;
-  margin-bottom: 50px;
-`
-
-export const DrawPrice = styled.p`
-  font-size: 14px;
-  font-weight: bold;
-  color: #000000;
-  text-align: center;
-  line-height: 2;
-
-  span {
-    font-weight: normal;
-    color: #6c757d;
-  }
-`
-
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  z-index: 1000;
-`
-
-export const LargeCard = styled.div`
+export const Form = styled.form`
   width: 80%;
   height: 90%;
   background: #ffffff;
   border-radius: 15px;
-  padding-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 90px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   z-index: 1001;
   gap: 20px;
   overflow: auto;
-  text-align: center;
   position: relative;
 
   &::before {
@@ -142,12 +46,16 @@ export const LargeCard = styled.div`
     z-index: -1;
   }
 
-  ${RaffleImage} {
+  input {
     width: 100%;
-    height: 100%;
-    max-width: 300px;
-    max-height: 300px;
-    position: static;
+    height: 35px;
+    border-radius: 8px;
+    color: #6c757d;
+    padding: 0 10px;
+  }
+
+  .form {
+    background-color: #e0f5fe;
   }
 
   .prize-title {
@@ -155,17 +63,11 @@ export const LargeCard = styled.div`
     flex-direction: column;
     align-items: center;
     color: #f59705;
-    margin-top: 50px;
+    margin-top: 20px;
 
     h2 {
       margin-top: 0;
     }
-  }
-
-  .prize-image {
-    width: 400px;
-    height: 400px;
-    position: static;
   }
 
   .ticket-quantity-buttons {
@@ -210,6 +112,57 @@ export const LargeCard = styled.div`
   }
 `
 
+export const ContainerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+`
+
+export const ContainerInfo = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+`
+
+export const RaffleImage = styled.img`
+  height: 300px;
+  max-width: 250px;
+`
+
+export const PrizeImage = styled.img`
+  width: 600px;
+  max-width: 100%;
+`
+
+export const Title = styled.h2`
+  font-size: 16px;
+  font-weight: bold;
+  color: #f59705;
+  margin-top: 20px;
+  text-align: center;
+`
+
+export const Description = styled.p`
+  font-size: 14px;
+  color: #6c757d;
+  width: 100%;
+  line-height: 1.5;
+  margin: 20px 0 50px 0;
+  text-align: center;
+`
+
+export const DrawPrice = styled.p`
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+
+  span {
+    font-weight: normal;
+    color: #6c757d;
+  }
+`
+
 export const Countdown = styled.div`
   font-size: 14px;
   font-weight: bold;
@@ -242,6 +195,22 @@ export const Countdown = styled.div`
     .text {
       font-family: 'Sour Gummy', serif;
       font-size: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .div-countdown {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .div-countdown {
+      gap: 10px;
+    }
+
+    .text {
+      font-size: 16px !important;
     }
   }
 `

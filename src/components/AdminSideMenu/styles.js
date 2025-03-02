@@ -3,16 +3,13 @@ import BG from '../../assets/lucky-whale-waves-bg.png'
 
 export const Container = styled.div`
   min-width: 260px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(233, 233, 233, 1) 78%
-  );
+  background-color: #e9e9e9;
   position: relative;
   z-index: 1;
 

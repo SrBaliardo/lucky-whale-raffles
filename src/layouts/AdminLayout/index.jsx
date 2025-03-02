@@ -9,7 +9,7 @@ export function AdminLayout() {
   const isAdmin = true
 
   const menuOptions = [
-    { label: 'Dashboard', pathname: '/admin/dashboard' },
+    // { label: 'Dashboard', pathname: '/admin/dashboard' },
     { label: 'Minhas Rifas', pathname: '/admin/raffle-list' },
     { label: 'Criar Rifa', pathname: '/admin/raffle-register' },
     { label: 'Gerenciar Território', pathname: '/admin/manage-territory' },

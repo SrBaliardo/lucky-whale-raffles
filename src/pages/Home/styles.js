@@ -187,7 +187,7 @@ export const EBookSection = styled.section`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     padding: 50px;
   }
 
@@ -321,7 +321,7 @@ export const CreateProcessContent = styled.div`
     color: #01cc01;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1280px) {
     height: 700px;
     grid-template-columns: repeat(2, 1fr);
   }
