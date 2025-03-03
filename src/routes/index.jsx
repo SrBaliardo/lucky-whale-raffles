@@ -8,7 +8,9 @@ import {
   RegisterAdmin,
   UseTerms,
   PrivacyPolicy,
+  StepByStep,
   RestrictedArea,
+  ForgotPassword,
   AdminRaffleList,
   UserDashboard,
   RaffleRegister,
@@ -32,6 +34,8 @@ export function Router() {
         <Route path='/restricted-area' element={<RestrictedArea />} />
         <Route path='/user-register' element={<RegisterAdmin />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/step-by-step' element={<StepByStep />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/order-resume' element={<OrderResume />} />
         <Route path='/order-completed' element={<OrderCompleted />} />
       </Route>

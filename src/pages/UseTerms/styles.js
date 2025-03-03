@@ -13,7 +13,7 @@ export const Container = styled.div`
   line-height: 1.5;
 `
 
-export const AboutContent = styled.div`
+export const TermsContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;

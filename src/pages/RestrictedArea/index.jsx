@@ -13,7 +13,14 @@ export function RestrictedArea() {
 
         <div className='div'>
           <p>
-            Esqueceu a senha? <a>Clique aqui!</a>
+            Esqueceu a senha?{' '}
+            <a
+              onClick={() => {
+                navigate('/forgot-password')
+              }}
+            >
+              Clique aqui
+            </a>
           </p>
 
           <p>

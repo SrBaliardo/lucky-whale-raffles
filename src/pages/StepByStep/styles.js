@@ -13,11 +13,11 @@ export const Container = styled.div`
   line-height: 1.5;
 `
 
-export const PrivacyContent = styled.div`
+export const StepsContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 30px;
+  padding: 30px 30px 50px 30px;
   width: 1100px;
   max-width: 100%;
 `
@@ -45,14 +45,11 @@ export const Title = styled.h2`
   margin-top: 30px;
 `
 
-export const Subtitle = styled.h3`
-  margin-top: 15px;
-`
-
 export const Text = styled.p``
 
-export const DealImg = styled.img`
+export const StepsImg = styled.img`
   width: 300px;
+  align-self: center;
 `
 
 export const L_W = styled.span`

@@ -1,6 +1,6 @@
 import {
   Container,
-  AboutContent,
+  TermsContent,
   TitleSection,
   Title,
   Subtitle,
@@ -11,11 +11,11 @@ import {
 import Deal from '../../assets/deal.png'
 
 export function UseTerms() {
-  const eMail = '**EMAIL**'
+  const eMail = 'contato@luckywhaleraffles.com.br'
 
   return (
     <Container>
-      <AboutContent>
+      <TermsContent>
         <TitleSection>
           Termos de Uso
           <Text>
@@ -538,7 +538,7 @@ export function UseTerms() {
           Em caso de ordem administrativa ou judicial, as informações poderão
           ser compartilhadas, sempre respeitando o devido processo legal.
         </Text>
-      </AboutContent>
+      </TermsContent>
 
       <DealImg src={Deal} alt='high-five-image' />
     </Container>

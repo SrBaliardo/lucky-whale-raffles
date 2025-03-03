@@ -12,7 +12,7 @@ export function ChangePassword() {
       <Content>
         <Description>
           Ao clicar no botão, um e-mail com instruções será enviado. Cheque sua
-          caixa de entrada e sua caixa de span, os provedores as vezes podem
+          caixa de entrada e sua caixa de spam, os provedores as vezes podem
           encaminhar para lá.
         </Description>
 

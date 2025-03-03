@@ -10,10 +10,6 @@ export const Container = styled.div`
   padding: 20px;
   background-color: #ffffff;
 
-  img {
-    width: 100%;
-  }
-
   input {
     color: #6c757d;
     background-color: #e0f5fe;

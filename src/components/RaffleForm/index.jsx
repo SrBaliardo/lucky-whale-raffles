@@ -134,7 +134,6 @@ export function RaffleForm() {
   const validateAndFetchCEP = async (cep) => {
     if (cep.length > 8) {
       alert('CEP deve ter no máximo 8 dígitos.')
-      // clearAddressFields()
       return false
     }
 
@@ -144,14 +143,12 @@ export function RaffleForm() {
 
       if (data.erro) {
         alert('CEP não encontrado.')
-        // clearAddressFields()
         return false
       }
 
       return data
     } catch (error) {
       alert('Erro ao buscar CEP.')
-      // clearAddressFields()
       return false
     }
   }
@@ -167,7 +164,6 @@ export function RaffleForm() {
       setValue('neighborhood', data.bairro)
       setValue('city', data.localidade)
       setValue('uf', data.uf)
-      // alert('CEP localizado e endereço carregado!')
     }
   }
 
@@ -239,8 +235,8 @@ export function RaffleForm() {
         preencha todos os campos e lembre-se, deve ser uma ação beneficente e
         não comercial.
         <br />
-        Se estiver com dúvidas, <a href='#'>clique aqui</a> e veja nosso
-        passo-a-passo sobre como criar uma rifa.
+        Se estiver com dúvidas, <a href='/step-by-step'>clique aqui</a> e veja
+        nosso passo-a-passo sobre como criar uma rifa.
       </Subtitle>
 
       <ContainerContent>
@@ -538,7 +534,7 @@ export function RaffleForm() {
           <input type='checkbox' {...register('termsPrivacy_Use')} />
           <p>
             Confirmo que li e concordo com os{' '}
-            <a href='#'>Termos de Privacidade</a> e{' '}
+            <a href='/privacy-policy'>Política de Privacidade</a> e{' '}
             <a href='/terms-of-use'>Termos de Uso</a>.
           </p>
         </ContainerCheck>
