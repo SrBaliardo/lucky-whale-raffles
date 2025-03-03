@@ -148,6 +148,16 @@ export const LargeCard = styled.div`
     max-width: 300px;
     max-height: 300px;
     position: static;
+
+    @media (max-width: 768px) {
+      max-width: 200px;
+      max-height: 200px;
+    }
+
+    @media (max-width: 430px) {
+      max-width: 150px;
+      max-height: 150px;
+    }
   }
 
   .prize-title {
@@ -242,6 +252,16 @@ export const Countdown = styled.div`
     .text {
       font-family: 'Sour Gummy', serif;
       font-size: 20px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .div-countdown {
+      gap: 10px;
+    }
+
+    .text {
+      font-size: 17px !important;
     }
   }
 `
