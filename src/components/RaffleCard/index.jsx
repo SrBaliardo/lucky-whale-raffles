@@ -35,16 +35,12 @@ function formatISODate(date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
-export function RaffleCard({}) {
+export function RaffleCard({ raffle }) {
   const navigate = useNavigate()
   const [isLarge, setIsLarge] = useState(false)
   const [counter, setCounter] = useState(0)
 
   const drawDate = formatISODate(new Date(Date.now() + 24 * 60 * 60 * 1000))
-
-  // useEffect(() => {
-  //   console.log('Preview Data:', previewData)
-  // }, [previewData])
 
   function calculateCountdown(drawDateString) {
     const targetDate = new Date(drawDateString)
@@ -61,15 +57,15 @@ export function RaffleCard({}) {
   }
 
   const [currentCountdown, setCurrentCountdown] = useState(
-    calculateCountdown(drawDate),
+    calculateCountdown(raffle.drawDate),
   )
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCountdown(calculateCountdown(drawDate))
+      setCurrentCountdown(calculateCountdown(raffle.drawDate))
     }, 1000)
     return () => clearInterval(interval)
-  }, [drawDate])
+  }, [raffle.drawDate])
 
   const handleIncrement = () => {
     if (counter !== 99) {
@@ -103,21 +99,17 @@ export function RaffleCard({}) {
   return (
     <>
       <ContainerCardRaffle>
-        <RaffleImage src={DefaultImg} alt='product-offer-image' />
+        <RaffleImage
+          src={raffle.raffleImageURL || DefaultImg}
+          alt='product-offer-image'
+        />
         <ConteinerItems>
-          <Title>*título da rifa*</Title>
+          <Title>{raffle.title}</Title>
           <Description className='litle'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere,
-            incidunt voluptatibus dignissimos ex commodi repellendus eius
-            repellat exercitationem voluptate, culpa facilis numquam eaque, nam
-            cum ducimus magnam porro? Necessitatibus, ea! Lorem ipsum dolor sit
-            amet consectetur, adipisicing elit. Facere, incidunt voluptatibus
-            dignissimos ex commodi repellendus eius repellat exercitationem
-            voluptate, culpa facilis numquam eaque, nam cum ducimus magnam
-            porro? Necessitatibus, ea!
+            {raffle.raffleDescription}
           </Description>
           <DrawPrice>
-            Sorteio <span>{formatDate(drawDate)}</span>
+            Sorteio <span>{formatDate(raffle.drawDate)}</span>
             <br />
             Preço <span>R$10,00</span>
           </DrawPrice>
@@ -130,16 +122,19 @@ export function RaffleCard({}) {
       {isLarge && (
         <Overlay onClick={closeLargeCard}>
           <LargeCard onClick={(e) => e.stopPropagation()}>
-            <RaffleImage src={DefaultImg} alt='beneficiary-large-image' />
+            <RaffleImage
+              src={raffle.raffleImageURL || DefaultImg}
+              alt='beneficiary-large-image'
+            />
 
             <Section className='section'>
-              <Title>{'título da rifa'}</Title>
+              <Title>{raffle.title}</Title>
 
-              <Description>{'descrição da rifa'}</Description>
+              <Description>{raffle.raffleDescription}</Description>
             </Section>
 
             <DrawPrice>
-              Sorteio <span>{formatDate(drawDate) || ''}</span>
+              Sorteio <span>{formatDate(raffle.drawDate) || ''}</span>
               <br />
               Preço <span>R$10,00</span>
             </DrawPrice>
@@ -173,8 +168,11 @@ export function RaffleCard({}) {
                 <Title>Prêmio</Title>
               </div>
 
-              <Description>{'descrição do prêmio'}</Description>
-              <PrizeImage src={DefaultImg2} alt='prize-large-image' />
+              <Description>{raffle.prizeDescription}</Description>
+              <PrizeImage
+                src={raffle.prizeImageURL || DefaultImg2}
+                alt='prize-large-image'
+              />
             </Section>
 
             <Countdown>

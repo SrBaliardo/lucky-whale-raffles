@@ -22,6 +22,7 @@ export const Container = styled.div`
 
   button {
     font-size: 16px;
+    margin-top: 30px;
   }
 `
 
@@ -33,9 +34,10 @@ export const TitleSection = styled.h1`
 `
 
 export const Title = styled.h2`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: #f59705;
+  margin-top: 20px;
 `
 
 export const Description = styled.p`
@@ -49,10 +51,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
   padding: 20px;
   width: 100%;
   max-width: 500px;
-  height: 300px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 `

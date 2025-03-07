@@ -9,11 +9,21 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import PasswordIcon from '@mui/icons-material/Password'
 import HomeIcon from '@mui/icons-material/Home'
 import LogoutIcon from '@mui/icons-material/Logout'
+import { useUser } from '../../contexts/UserContext'
+import { useRaffle } from '../../contexts/RaffleContext'
 
 export function AdminSideMenu() {
   const navigate = useNavigate()
   const location = useLocation()
   const pathname = location.pathname
+  const { clearUserData } = useUser()
+  const { setRafflesByUser } = useRaffle()
+
+  const logout = () => {
+    clearUserData()
+    setRafflesByUser([])
+    navigate('/')
+  }
 
   return (
     <Container>
@@ -68,7 +78,7 @@ export function AdminSideMenu() {
             Ir para Home
           </MenuLink>
           <MenuLink className='unshow'></MenuLink>
-          <MenuLink onClick={() => navigate('/')}>
+          <MenuLink onClick={logout}>
             <LogoutIcon />
             Sair
           </MenuLink>

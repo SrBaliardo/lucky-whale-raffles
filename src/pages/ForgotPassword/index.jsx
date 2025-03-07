@@ -7,12 +7,40 @@ import {
   Description,
 } from './styles'
 import { ButtonFilled } from '../../components'
+import { useUser } from '../../contexts/UserContext'
+import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 export function ForgotPassword() {
   const navigate = useNavigate()
+  const { forgotPassword } = useUser()
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
 
-  const sendEmail = () => {
-    alert('E-mail enviado, cheque sua caixa.')
+  const onSubmit = async () => {
+    if (fullName === '') {
+      toast.warn('Informe o NOME COMPLETO')
+      return
+    }
+
+    if (email === '') {
+      toast.warn('Informe o E-MAIL')
+      return
+    }
+
+    try {
+      const data = {
+        fullName,
+        email,
+      }
+
+      await forgotPassword(data)
+
+      setFullName('')
+      setEmail('')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -20,15 +48,30 @@ export function ForgotPassword() {
       <TitleSection>Esqueceu sua senha?</TitleSection>
       <ContainerContent>
         <Description>
-          Ao clicar no botão, um e-mail com instruções será enviado. Cheque sua
-          caixa de entrada e sua caixa de spam, os provedores as vezes podem
-          encaminhar para lá.
+          Informe o nome completo e o e-mail cadastrado.
+          <br />
+          Ao clicar no botão, a senha do usuário será resetada e por padrão será{' '}
+          <b>senha123</b>.
+          <br />
+          Fique atento e lembre-se de alterar a senha para uma segura em
+          seguida. <b>Faça login e vá em "Alterar Senha"</b>.
         </Description>
 
-        <Title>E-MAIL</Title>
-        <input type='text' placeholder='seuemailaqui@email.com.br' />
+        <Title>NOME COMPLETO</Title>
+        <input
+          type='text'
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
 
-        <ButtonFilled type='button' onClick={sendEmail}>
+        <Title>E-MAIL</Title>
+        <input
+          type='text'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <ButtonFilled type='button' onClick={onSubmit}>
           Solicitar
         </ButtonFilled>
 

@@ -39,7 +39,7 @@ export const ContainerContent = styled.div`
   animation: ${gradientBg} 15s linear infinite;
   border-radius: 10px;
   box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3);
-  gap: 20px;
+  gap: 10px;
   color: #6c757d;
 
   a {

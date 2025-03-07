@@ -19,6 +19,8 @@ import PermMediaIcon from '@mui/icons-material/PermMedia'
 import DefaultImage from '../../assets/lucky-whale-icon.png'
 import DefaultImage2 from '../../assets/default-prize.png'
 import SearchIcon from '@mui/icons-material/Search'
+import { useRaffle } from '../../contexts/RaffleContext'
+import { useUser } from '../../contexts/UserContext'
 
 function fileToDataURL(file) {
   return new Promise((resolve, reject) => {
@@ -40,8 +42,11 @@ export function RaffleForm() {
   const [prizeDescription, setPrizeDescription] = useState('')
   const maxLength = 1540
   const navigate = useNavigate()
+  const { createNewRaffle } = useRaffle()
+  const { userId, userFullName, userEmail } = useUser()
 
-  const defaultTicketValue = 'R$ 10,00'
+  const ticketPrice = 'R$ 10,00'
+  const category = 'Organizações'
 
   const {
     register,
@@ -59,7 +64,7 @@ export function RaffleForm() {
       setValue('title', data.title || '')
       setValue('beneficiary', data.beneficiary || '')
       setValue('drawDate', data.drawDate || '')
-      setValue('ticketPrice', data.ticketPrice || defaultTicketValue)
+      setValue('ticketPrice', data.ticketPrice || ticketPrice)
       setValue('bankAccountName', data.bankAccountName || '')
       setValue('bankAccountId', data.bankAccountId || '')
       setValue('bankAccountInstitution', data.bankAccountInstitution || '')
@@ -199,36 +204,42 @@ export function RaffleForm() {
     navigate('/admin/raffle-preview', { state: { previewData } })
   })
 
-  const handleRegister = handleSubmit((data) => {
+  const handleRegister = async (data) => {
     if (!data.termsPrivacy_Use || !data.termsTrueInformation) {
       alert(
         'Você deve aceitar os Termos de Privacidade e os Termos de Uso para registrar.',
       )
       return
     }
-    data.bankAccountSavings = data.bankAccountSavings ? true : false
+    data.bankAccountSavings = !!data.bankAccountSavings
     const drawDate = data.drawDate || getDefaultDateTime()
-    const countdown = calculateCountdown(drawDate)
-    const previewData = {
+    const definitiveData = {
       ...data,
+      phone,
       raffleDescription,
       prizeDescription,
       raffleImageURL,
       prizeImageURL,
       drawDate,
-      countdown,
+      ticketPrice: 10.0,
       termsPrivacy_Use: true,
       termsTrueInformation: true,
+      userId,
+      category,
     }
-    alert('Rifa registrada com sucesso')
-    console.log('Registrando com os dados:', previewData)
-    sessionStorage.removeItem('previewData')
-    navigate('/admin/raffle-list')
-    //navigate('/admin/success', { state: { previewData } })
-  })
+    try {
+      await createNewRaffle(definitiveData)
+
+      sessionStorage.removeItem('previewData')
+      navigate('/admin/raffle-list')
+    } catch (error) {
+      console.error('Erro ao registrar rifa:', error)
+      alert('Ocorreu um erro ao registrar a rifa. Tente novamente.')
+    }
+  }
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(handleRegister)}>
       <Subtitle>
         As informações a seguir definirão como vai seu RifaCard. Também pode ser
         o diferencial para o sucesso de sua campanha. Então leia com atenção,
@@ -384,9 +395,8 @@ export function RaffleForm() {
           <input
             className='read-only'
             type='text'
-            value={defaultTicketValue}
+            value={ticketPrice}
             readOnly
-            {...register('ticketPrice')}
           />
         </ContainerContent>
       </ContainerInfo>
@@ -552,9 +562,7 @@ export function RaffleForm() {
         <ButtonFilled type='button' onClick={handlePreview}>
           Pré-visualização
         </ButtonFilled>
-        <ButtonFilled type='button' onClick={handleRegister}>
-          Registrar
-        </ButtonFilled>
+        <ButtonFilled type='submit'>Registrar</ButtonFilled>
       </ContainerButtons>
     </Form>
   )

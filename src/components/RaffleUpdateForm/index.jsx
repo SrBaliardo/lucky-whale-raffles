@@ -33,14 +33,10 @@ function formatISODate(date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
-export function RaffleUpdateForm({ previewData }) {
+export function RaffleUpdateForm({ selectedRaffle }) {
   const [disabled, setDisabled] = useState(true)
   const [drawn, setDrawn] = useState(false)
   const drawDate = formatISODate(new Date(Date.now() + 24 * 60 * 60 * 1000))
-
-  // useEffect(() => {
-  //   console.log('Preview Data:', previewData)
-  // }, [previewData])
 
   useEffect(() => {
     setDisabled(disabled)
@@ -61,27 +57,30 @@ export function RaffleUpdateForm({ previewData }) {
   }
 
   const [currentCountdown, setCurrentCountdown] = useState(
-    calculateCountdown(drawDate),
+    calculateCountdown(selectedRaffle.drawDate),
   )
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCountdown(calculateCountdown(drawDate))
+      setCurrentCountdown(calculateCountdown(selectedRaffle.drawDate))
     }, 1000)
     return () => clearInterval(interval)
-  }, [drawDate])
+  }, [selectedRaffle.drawDate])
 
   return (
     <Form>
-      <RaffleImage src={DefaultImg} alt='beneficiary-large-image' />
+      <RaffleImage
+        src={selectedRaffle.raffleImageURL || DefaultImg}
+        alt='beneficiary-large-image'
+      />
       <Section className='section'>
-        <Title>{'título da rifa'}</Title>
+        <Title>{selectedRaffle.title}</Title>
 
-        <Description>{'descrição da rifa'}</Description>
+        <Description>{selectedRaffle.raffleDescription}</Description>
       </Section>
 
       <DrawPrice>
-        Sorteio <span>{formatDate(drawDate) || ''}</span>
+        Sorteio <span>{formatDate(selectedRaffle.drawDate) || ''}</span>
       </DrawPrice>
       <DrawPrice>
         Preço <span>R$10,00</span>
@@ -101,7 +100,7 @@ export function RaffleUpdateForm({ previewData }) {
 
       <div className='count-ticket-quantity'>
         <ButtonBordered type='button'>-</ButtonBordered>
-        <span>1</span>
+        <span>0</span>
         <ButtonBordered type='button'>+</ButtonBordered>
       </div>
 
@@ -115,8 +114,11 @@ export function RaffleUpdateForm({ previewData }) {
           <Title>Prêmio</Title>
         </div>
 
-        <Description>{'descrição do prêmio'}</Description>
-        <PrizeImage src={DefaultImg2} alt='prize-large-image' />
+        <Description>{selectedRaffle.prizeDescription}</Description>
+        <PrizeImage
+          src={selectedRaffle.prizeImageURL || DefaultImg2}
+          alt='prize-large-image'
+        />
       </Section>
 
       <Countdown>

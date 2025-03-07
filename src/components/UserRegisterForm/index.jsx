@@ -9,13 +9,31 @@ import {
   ContainerAddress,
   ContainerPassword,
   ContainerButtons,
+  InputContainer,
+  InputPassword,
 } from './styles'
 import { ButtonFilled } from '../../components'
 import SearchIcon from '@mui/icons-material/Search'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import { useUser } from '../../contexts/UserContext'
 
 export function UserRegisterForm() {
   const [cepData, setCepData] = useState(false)
   const navigate = useNavigate()
+  const [isShowPassword, setIsShowPassword] = useState(false)
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const { addNewUser } = useUser()
+
+  const toggleViewPassword = () => {
+    setIsShowPassword(!isShowPassword)
+  }
+
+  const toggleViewConfirmPassword = () => {
+    setIsShowConfirmPassword(!isShowConfirmPassword)
+  }
 
   useEffect(() => {
     clearAddressFields()
@@ -29,7 +47,6 @@ export function UserRegisterForm() {
     formState: { errors },
   } = useForm()
 
-  /*TIRAR CEP DO CADASTRO, VAI FICAR NA RIFA*/
   const validateAndFetchCEP = async (cep) => {
     if (cep.length > 8) {
       alert('CEP deve ter no máximo 8 dígitos.')
@@ -58,7 +75,7 @@ export function UserRegisterForm() {
   const clearAddressFields = () => {
     setValue('cep', '')
     setValue('street', '')
-    setValue('street-number', '')
+    setValue('streetNumber', '')
     setValue('complement', '')
     setValue('neighborhood', '')
     setValue('city', '')
@@ -76,38 +93,44 @@ export function UserRegisterForm() {
       setValue('neighborhood', data.bairro)
       setValue('city', data.localidade)
       setValue('uf', data.uf)
-      // alert('CEP localizado e endereço carregado!')
     }
   }
 
-  const handleCancel = () => {
-    navigate('/')
-    clearAddressFields()
-    setCepData(false)
-  }
+  const onSubmit = async (data) => {
+    try {
+      if (password !== confirmPassword) {
+        alert('as senhas devem ser iguais')
+        return
+      }
 
-  const onSubmit = (data) => {
-    if (data.password !== data.confirmPassword) {
-      alert('as senhas devem ser iguais')
-      return
-    }
+      const birthDate = new Date(data.birthDate)
+      const today = new Date()
+      let age = today.getFullYear() - birthDate.getFullYear()
+      const monthDiff = today.getMonth() - birthDate.getMonth()
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
+        age--
+      }
 
-    const birthDate = new Date(data.birthDate)
-    const today = new Date()
-    let age = today.getFullYear() - birthDate.getFullYear()
-    const monthDiff = today.getMonth() - birthDate.getMonth()
-    if (
-      monthDiff < 0 ||
-      (monthDiff === 0 && today.getDate() < birthDate.getDate())
-    ) {
-      age--
-    }
+      if (age < 18) {
+        alert('deve ser maior do que 18 anos para criar conta')
+        return
+      }
 
-    if (age < 18) {
-      alert('deve ser maior do que 18 anos para criar conta')
-      return
+      const definitiveData = {
+        ...data,
+        password,
+      }
+
+      await addNewUser(definitiveData)
+    } catch (error) {
+      console.error(error)
     }
-    alert('Conta criada com sucesso!')
+    setTimeout(() => {
+      navigate('/restricted-area')
+    }, 1000)
   }
 
   return (
@@ -159,7 +182,7 @@ export function UserRegisterForm() {
             </ContainerContent>
             <ContainerContent className='number'>
               <label>Número</label>
-              <input type='text' {...register('street-number')} />
+              <input type='text' {...register('streetNumber')} />
             </ContainerContent>
           </ContainerAddress>
           <ContainerContent>
@@ -185,25 +208,39 @@ export function UserRegisterForm() {
       )}
 
       <ContainerPassword>
-        <ContainerContent>
-          <label>
-            Senha <span>*</span>
-          </label>
-          <input
-            type='password'
-            {...register('password', { required: true })}
-          />
-        </ContainerContent>
+        <InputContainer>
+          <label>Senha</label>
+          <InputPassword>
+            <input
+              type={isShowPassword ? 'text' : 'password'}
+              placeholder='*******'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type='button' onClick={toggleViewPassword}>
+              {isShowPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </button>
+          </InputPassword>
+        </InputContainer>
 
-        <ContainerContent>
-          <label>
-            Repita a Senha <span>*</span>
-          </label>
-          <input
-            type='password'
-            {...register('confirmPassword', { required: true })}
-          />
-        </ContainerContent>
+        <InputContainer>
+          <label> Repita a Senha</label>
+          <InputPassword>
+            <input
+              type={isShowConfirmPassword ? 'text' : 'password'}
+              placeholder='*******'
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button type='button' onClick={toggleViewConfirmPassword}>
+              {isShowConfirmPassword ? (
+                <VisibilityOffIcon />
+              ) : (
+                <VisibilityIcon />
+              )}
+            </button>
+          </InputPassword>
+        </InputContainer>
       </ContainerPassword>
 
       <ContainerButtons>

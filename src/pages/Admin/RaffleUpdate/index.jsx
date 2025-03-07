@@ -1,8 +1,12 @@
 import { Container, Title, Back } from './styles'
 import { RaffleUpdateForm } from '../../../components'
 import UndoIcon from '@mui/icons-material/Undo'
+import { useLocation } from 'react-router-dom'
 
 export function RaffleUpdate() {
+  const location = useLocation()
+  const selectedRaffle = location?.state.selectedRaffle
+
   return (
     <Container>
       <Back
@@ -13,7 +17,7 @@ export function RaffleUpdate() {
         <UndoIcon /> &nbsp; Voltar
       </Back>
 
-      <RaffleUpdateForm />
+      <RaffleUpdateForm selectedRaffle={selectedRaffle} />
     </Container>
   )
 }

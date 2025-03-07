@@ -38,7 +38,6 @@ export function AdminFooterMenu() {
             <li onClick={() => navigate('/admin/raffle-register')}>
               Criar Rifa
             </li>
-            {/* <li onClick={() => navigate('/restricted-area')}>Criar Rifa</li> */}
             <li onClick={() => navigate('/admin/raffle-list')}>Minhas Rifas</li>
             <li onClick={() => navigate('/admin/raffle-list')}>Sortear</li>
           </ul>

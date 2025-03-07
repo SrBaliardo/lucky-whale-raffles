@@ -1,11 +1,17 @@
-import { Container } from './styles'
-import Coding from '../../../assets/coding.gif'
+import { Container, Content, Title, Subtitle, Image } from './styles'
+import BgDash from '../../../assets/background-dashboard-removebg.png'
 
 export function UserDashboard() {
   return (
     <Container>
-      <h1>DASHBOARD</h1>
-      <img src={Coding} />
+      <Content>
+        <Title>BEM VINDO !</Title>
+        <Image src={BgDash} />
+        <Subtitle>
+          <span>Lembre-se:</span>
+          <br /> Solidariedade é uma onda que vai...e vem!
+        </Subtitle>
+      </Content>
     </Container>
   )
 }

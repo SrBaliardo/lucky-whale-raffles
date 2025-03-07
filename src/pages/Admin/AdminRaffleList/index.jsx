@@ -1,20 +1,23 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { RafflesList, ButtonFilled, InputSelect } from '../../../components'
 import { Container, ContainerFilter, ContainerContent, Title } from './styles'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 
 export function AdminRaffleList() {
+  const [selectedCategory, setSelectedCategory] = useState()
+  const [selectedStatus, setSelectedStatus] = useState()
+
   const menuOptionsCategory = [
-    { label: 'Todas', pathname: '' },
-    { label: 'Pets', pathname: '' },
-    { label: 'Pessoas', pathname: '' },
-    { label: 'Organizações', pathname: '' },
+    { label: 'Todas', value: '' },
+    { label: 'Pets', value: 'Pets' },
+    { label: 'Pessoas', value: 'Pessoas' },
+    { label: 'Organizações', value: 'Organizações' },
   ]
 
   const menuOptionsStatus = [
-    { label: 'Todas', pathname: '' },
-    { label: 'Ativa', pathname: '' },
-    { label: 'Finalizada', pathname: '' },
+    { label: 'Todas', value: '' },
+    { label: 'Ativa', value: 'Ativa' },
+    { label: 'Finalizada', value: 'Finalizada' },
   ]
 
   const categoryRef = useRef(null)
@@ -34,24 +37,41 @@ export function AdminRaffleList() {
 
   return (
     <Container>
-      <ContainerFilter>
+      {/* <ContainerFilter>
         <div>
           <label>Categorias</label>
-          <InputSelect options={menuOptionsCategory} ref={categoryRef} />
+          <InputSelect
+            options={menuOptionsCategory}
+            ref={categoryRef}
+            value={selectedCategory}
+            onChange={(option) => {
+              setSelectedCategory(option.value)
+            }}
+          />
         </div>
 
         <div>
           <label>Status</label>
-          <InputSelect options={menuOptionsStatus} ref={statusRef} />
+          <InputSelect
+            options={menuOptionsStatus}
+            ref={statusRef}
+            value={selectedStatus}
+            onChange={(option) => {
+              setSelectedStatus(option.value)
+            }}
+          />
         </div>
 
         <ButtonFilled onClick={handleResetFilters}>
           <HighlightOffIcon />
           &nbsp;Filtros
         </ButtonFilled>
-      </ContainerFilter>
+      </ContainerFilter> */}
 
-      <RafflesList />
+      <RafflesList
+        selectedCategory={selectedCategory}
+        selectedStatus={selectedStatus}
+      />
     </Container>
   )
 }

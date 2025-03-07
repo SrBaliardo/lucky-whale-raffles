@@ -61,12 +61,13 @@ export const ContainerContent = styled.div`
 export const Title = styled.h1`
   width: 74.5%;
   text-align: center;
-  margin: 30px 20px 20px 20px;
+  margin: 30px 20px 50px 20px;
   background-color: #e0f5fe;
   border-top-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
+  padding: 5px;
 
   @media (max-width: 768px) {
     width: 92%;

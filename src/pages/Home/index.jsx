@@ -63,7 +63,7 @@ export function Home() {
           <ContainerButtons>
             <ButtonBordered
               onClick={() => {
-                navigate('/restricted-area')
+                navigate('/admin/raffle-register')
               }}
             >
               CRIAR RIFA
@@ -194,8 +194,7 @@ export function Home() {
         <ButtonBordered
           className='bordered'
           onClick={() => {
-            // navigate('/admin/raffle-register')
-            navigate('/restricted-area')
+            navigate('/admin/raffle-register')
           }}
         >
           CRIAR RIFA
@@ -229,9 +228,6 @@ export function Home() {
                   )}
                 </span>
               </p>
-              {/* <p className={`faq-answer ${openFaqs[index] ? 'open' : ''}`}>
-                {faq.answer}
-              </p> */}
 
               <div
                 className={`faq-answer ${openFaqs[index] ? 'open' : ''}`}

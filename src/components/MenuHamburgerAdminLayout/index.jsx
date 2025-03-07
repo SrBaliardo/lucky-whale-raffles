@@ -11,7 +11,11 @@ export function MenuHamburgerAdminLayout({ options }) {
   }
 
   const handleOptionClick = (option) => {
-    navigate(option.pathname)
+    if (option.onClick) {
+      option.onClick()
+    } else {
+      navigate(option.pathname)
+    }
     setIsOpen(false)
   }
 

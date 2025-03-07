@@ -42,3 +42,40 @@ export const ContainerLoginInfo = styled.div`
     color: #6c757d;
   }
 `
+
+export const InputContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  input {
+    height: 35px;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 0 10px;
+    color: #6c757d;
+  }
+`
+
+export const InputPassword = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+
+  input {
+    color: #6c757d;
+    width: 100%;
+  }
+
+  button {
+    margin: 0;
+    padding: 5px 10px 0 0;
+    color: #6c757d;
+    height: 35px;
+    background-color: #ffffff;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+`

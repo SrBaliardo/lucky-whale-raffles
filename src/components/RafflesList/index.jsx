@@ -7,59 +7,37 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { Container, ViewIcon, Slide } from './styles'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useUser } from '../../contexts/UserContext'
+import { useRaffle } from '../../contexts/RaffleContext'
 
-function createData(id, title, tickets_amount, money_amount, status) {
-  return { id, title, tickets_amount, money_amount, status }
-}
-
-const rows = [
-  createData(100001, 'Tratamento do Paulim', 159, 'R$ 600,00', 'Ativa'),
-  createData(
-    100002,
-    'Comprar mantimentos para moradores de rua',
-    237,
-    'R$ 900,00',
-    'Ativa',
-  ),
-  createData(100003, 'dogS.O.S', 262, 'R$ 160,00', 'Finalizada'),
-  createData(100004, 'Casa do vovô', 305, 'R$ 370,00', 'Ativa', <ViewIcon />),
-  createData(
-    100005,
-    'Comprar uma cadeira de rodas nova pra Leandrinha',
-    356,
-    'R$ 160,00',
-    'Finalizada',
-  ),
-  createData(100006, 'Frozen yoghurt', 159, 'R$ 600,00', 'Ativa', <ViewIcon />),
-  createData(
-    100007,
-    'Preciso voltar pra terrinha, me ajudem',
-    237,
-    'R$ 900,00',
-    'Ativa',
-  ),
-  createData(100008, 'Roberto Carlos', 262, 'R$ 160,00', 'Finalizada'),
-  createData(
-    100009,
-    'Igreja da Revoada do 15º dia',
-    305,
-    'R$ 370,00',
-    'Ativa',
-    <ViewIcon />,
-  ),
-]
-
-export function RafflesList() {
+export function RafflesList({ selectedCategory, selectedStatus }) {
   const navigate = useNavigate()
+  const { userId } = useUser()
+  const { getRafflesByUser, rafflesByUser } = useRaffle()
+
+  useEffect(() => {
+    if (userId) {
+      getRafflesByUser(userId)
+    }
+  }, [getRafflesByUser, userId])
+
+  const handleSelectRaffle = (raffle) => {
+    navigate('/admin/raffle-update', {
+      state: {
+        selectedRaffle: raffle,
+      },
+    })
+  }
 
   return (
     <Container>
       <Slide />
       <TableContainer>
-        <Table aria-label='simple table'>
+        <Table>
           <TableHead>
             <TableRow>
-              <TableCell className='table-head break'>Título</TableCell>
+              <TableCell className='table-head'>Título</TableCell>
               <TableCell className='table-head'>Bilhetes</TableCell>
               <TableCell className='table-head'>Arrecadação</TableCell>
               <TableCell className='table-head'>Status</TableCell>
@@ -67,24 +45,28 @@ export function RafflesList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell className='size-collumn'>{row.title}</TableCell>
-                <TableCell className='unshow'>{row.tickets_amount}</TableCell>
-                <TableCell className='unshow'>{row.money_amount}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell>
-                  <ViewIcon
-                    onClick={() => {
-                      navigate('/admin/raffle-update')
-                    }}
-                  />
+            {rafflesByUser.length > 0 ? (
+              rafflesByUser.map((raffle) => (
+                <TableRow
+                  key={raffle.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell className='size-collumn'>{raffle.title}</TableCell>
+                  <TableCell>{raffle.ticketsAmount}</TableCell>
+                  <TableCell>{raffle.moneyAmount}</TableCell>
+                  <TableCell>{raffle.status}</TableCell>
+                  <TableCell>
+                    <ViewIcon onClick={() => handleSelectRaffle(raffle)} />
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={5} style={{ textAlign: 'center' }}>
+                  Nenhuma rifa encontrada.
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>

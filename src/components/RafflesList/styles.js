@@ -23,6 +23,10 @@ export const Container = styled.div`
   .break {
     overflow-wrap: break-word;
   }
+
+  .size-collumn {
+    min-width: 150px !important;
+  }
 `
 
 export const ViewIcon = styled(VisibilityIcon)`
@@ -45,7 +49,7 @@ export const Slide = styled(SettingsEthernetIcon)`
   color: #6c757d;
   opacity: 0.5;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     display: block !important;
   }
 `

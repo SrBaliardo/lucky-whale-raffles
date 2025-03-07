@@ -39,7 +39,6 @@ export function FooterMenu() {
             <li onClick={() => navigate('/admin/raffle-register')}>
               Criar Rifa
             </li>
-            {/* <li onClick={() => navigate('/restricted-area')}>Criar Rifa</li> */}
             <li onClick={() => navigate('/user-register')}>Cadastrar</li>
             <li onClick={() => navigate('/restricted-area')}>Entrar</li>
           </ul>
