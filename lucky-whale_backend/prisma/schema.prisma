@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @unique @default(uuid())
+  index        Int        @unique @default(autoincrement())
+  fullName     String
+  email        String     @unique
+  birthDate    DateTime
+  password     String
+  cep          String
+  street       String
+  streetNumber String
+  complement   String?
+  neighborhood String
+  city         String
+  uf           String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  raffles      Raffle[]
+  territory    Territory?
+}
+
+model Raffle {
+  id                     String   @id @unique @default(uuid())
+  index                  Int      @unique @default(autoincrement())
+  title                  String
+  phone                  String
+  raffleDescription      String
+  beneficiary            String
+  raffleImageURL         String?
+  prizeDescription       String
+  prizeImageURL          String?
+  drawDate               DateTime
+  ticketPrice            Float
+  bankAccountName        String
+  bankAccountId          String
+  bankAccountInstitution String
+  bankAccountAgency      String
+  bankAccountNumber      String
+  bankAccountNumberDigit String
+  bankAccountKey         String
+  bankAccountSavings     Boolean
+  titularCep             String
+  titularStreet          String
+  titularStreetNumber    String
+  titularComplement      String?
+  titularNeighborhood    String
+  titularCity            String
+  titularUf              String
+  termsPrivacy_Use       Boolean
+  termsTrueInformation   Boolean
+  userId                 String
+  createdAt              DateTime @default(now())
+  hasDraw                Boolean  @default(false)
+  moneyAmount            Float    @default(00.00)
+  status                 String   @default("Active")
+  ticketsAmount          Int      @default(0)
+  updatedAt              DateTime @updatedAt
+  orders                 Order[]
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tickets                Ticket[]
+}
+
+model Order {
+  id              String   @id @unique @default(uuid())
+  index           Int      @unique @default(autoincrement())
+  raffleId        String
+  ticketQuantity  Int
+  totalOrderPrice Float
+  buyerName       String
+  buyerId         String
+  buyerEmail      String
+  buyerPhone      String
+  methodPayment   String
+  status          String   @default("PENDING")
+  createdAt       DateTime @default(now())
+  raffle          Raffle   @relation(fields: [raffleId], references: [id])
+  tickets         Ticket[]
+}
+
+model Ticket {
+  id         String   @id @unique
+  identifier String   @unique
+  raffleId   String
+  orderId    String
+  number     Int
+  createdAt  DateTime @default(now())
+  order      Order    @relation(fields: [orderId], references: [id])
+  raffle     Raffle   @relation(fields: [raffleId], references: [id])
+}
+
+model Territory {
+  id         String   @id @unique @default(uuid())
+  userId     String   @unique
+  country    String   @default("allCountries")
+  stateScope String?
+  states     String[]
+  cityScope  String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
