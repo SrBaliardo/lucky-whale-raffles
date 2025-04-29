@@ -28,15 +28,51 @@ Projeto fullstack para criar e gerenciar campanhas sem fins lucrativos, oferecen
 
 ## 📥 Como Rodar o Projeto
 
-### Backend
+### 1. Clone o repositório:
+  ```bash
+  git clone https://github.com/SrBaliardo/lucky-whale-raffles.git
+  ```
 
-1. Clone o repositório:
+### 2. Iniciando o Backend
 
+#### 2.1. Acesse a pasta do backend
+  ```bash
+  cd lucky-whale-raffles/lucky-whale_backend
+  ```
+  
+  #### 2.2. Instale as dependências
    ```bash
-   git clone https://github.com/SrBaliardo/lucky-whale-raffles.git
-   ```
+  npm install
+  ```
 
-2. Veja como rodar o Backend e o Frontend nos respectivos README.md
+  #### 2.3. Configure as variáveis de ambiente copiando o arquivo .env-example para .env e ajustando conforme necessário.
+
+  #### 2.4. Execute as migrações do banco de dados:
+  ```bash
+  npx prisma migrate dev
+  ```
+  
+  #### 2.5. Inicie o servidor
+   ```bash
+  npm start
+  ```
+
+### 3. Iniciando o Frontend
+
+  #### 3.1. Acesse a pasta do frontend
+  ```bash
+  cd lucky-whale-raffles/lucky-whale_frontend
+  ```
+  
+  #### 3.2. Instale as dependências
+   ```bash
+  npm install
+  ```
+  
+  #### 3.3. Inicie o servidor de desenvolvimento
+   ```bash
+  npm run dev
+   ```
 
 <br>
 
