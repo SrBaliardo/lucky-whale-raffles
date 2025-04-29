@@ -1,17 +1,22 @@
-# Lucky Whale Raffles
+# 🐳 Lucky Whale Raffles
 
-## 🎯 Descrição
+<br>
+
+## 📜 Descrição
 
 Projeto fullstack para criar e gerenciar campanhas sem fins lucrativos, oferecendo brindes aos doadores. O sistema é dividido em duas partes:
 
 - **Backend**: API RESTful para gerenciamento de campanhas e integração com banco de dados.
 - **Frontend**: Interface de usuário para interação com as campanhas.
 
+<br>
+
 ## 🔗 Links
 
-- Repositório principal: [https://github.com/SrBaliardo/lucky-whale-raffles](https://github.com/SrBaliardo/lucky-whale-raffles)
-- Backend: [https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_backend](https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_backend)
-- Frontend: [https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_frontend](https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_frontend)
+- <a href="https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_backend">Backend</a>
+- <a href="https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_frontend">Frontend</a>
+
+<br>
 
 ## 📦 Tecnologias Utilizadas
 
@@ -19,7 +24,9 @@ Projeto fullstack para criar e gerenciar campanhas sem fins lucrativos, oferecen
 - Frontend: React, Vite
 - Banco de Dados: PostgreSQL
 
-## 🚀 Como Rodar o Projeto
+<br>
+
+## 📥 Como Rodar o Projeto
 
 ### Backend
 
@@ -27,39 +34,11 @@ Projeto fullstack para criar e gerenciar campanhas sem fins lucrativos, oferecen
 
    ```bash
    git clone https://github.com/SrBaliardo/lucky-whale-raffles.git
-   cd lucky-whale-raffles/lucky-whale_backend
+   ```
 
-___________
---- --- ---
-___________
+2. Veja como rodar o Backend e o Frontend nos respectivos README.md
 
-# Lucky Whale Raffles
+<br>
 
-## 🎯 Description
-
-Fullstack project to create and manage non-profit campaigns offering gifts to donors. The system is divided into two parts:
-
-- **Backend**: RESTful API for campaign management and database integration.
-- **Frontend**: User interface for interacting with campaigns.
-
-## 🔗 Links
-
-- Main repository: [https://github.com/SrBaliardo/lucky-whale-raffles](https://github.com/SrBaliardo/lucky-whale-raffles)
-- Backend: [https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_backend](https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_backend)
-- Frontend: [https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_frontend](https://github.com/SrBaliardo/lucky-whale-raffles/tree/main/lucky-whale_frontend)
-
-## 📦 Technologies used
-
-- Backend: Node.js, Express, Prisma ORM
-- Frontend: React, Vite
-- Database: PostgreSQL
-
-## 🚀 How to Run the Project
-
-### Backend
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/SrBaliardo/lucky-whale-raffles.git
-   cd lucky-whale-raffles/lucky-whale_backend
+🤝 Autor
+Desenvolvido por <a href="https://github.com/SrBaliardo">SrBaliardo</a>
