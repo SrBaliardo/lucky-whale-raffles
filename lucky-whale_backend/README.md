@@ -10,24 +10,29 @@ API RESTful construída com Node.js e Express, utilizando o Prisma ORM para inte
 
 Siga os passos abaixo para executar o projeto localmente:
 
-  ### 1. Acesse a pasta do backend
+  ### 1. Clone o repositório:
+  ```bash
+  git clone https://github.com/SrBaliardo/lucky-whale-raffles.git
+  ```
+
+  ### 2. Acesse a pasta do backend
   ```bash
   cd lucky-whale-raffles/lucky-whale_backend
   ```
   
-  ### 2. Instale as dependências
+  ### 3. Instale as dependências
    ```bash
   npm install
   ```
 
   ### 3. Configure as variáveis de ambiente copiando o arquivo .env-example para .env e ajustando conforme necessário.
 
-  ### 4. Execute as migrações do banco de dados:
+  ### 5. Execute as migrações do banco de dados:
   ```bash
   npx prisma migrate dev
   ```
   
-  ### Inicie o servidor
+  ### 6. Inicie o servidor
    ```bash
   npm start
   ```
