@@ -31,19 +31,19 @@ Siga os passos abaixo para clonar o repositório e executar o projeto localmente
    ```bash
   npm run dev
   ```
-<br><br>
+<br>
 
 ## 📚 Dependências
 - React + Vite
 - JavaScript
 - react-router-dom
 
-<br><br>
+<br>
 
 ## 🌐 Repositório
-🔗 Repositório completo: https://github.com/SrBaliardo/lucky-whale-raffles
+🔗 <a href="https://github.com/SrBaliardo/lucky-whale-raffles">Repositório completo </a>
 
-<br><br>
+<br>
 
 ## 🖼️ Fluxo por imagens:<br>
 <div>
@@ -80,3 +80,8 @@ Siga os passos abaixo para clonar o repositório e executar o projeto localmente
   <img align="center" alt="HTML" height="auto" width="150" src="src/assets/readme_images/lucky_whale-30.png">
   <img align="center" alt="HTML" height="auto" width="150" src="src/assets/readme_images/lucky_whale-31.png">
 </div>
+
+<br>
+
+🤝 Autor
+Desenvolvido por <a href="https://github.com/SrBaliardo">SrBaliardo</a>
