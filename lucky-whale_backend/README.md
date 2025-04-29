@@ -25,7 +25,7 @@ Siga os passos abaixo para executar o projeto localmente:
   npm install
   ```
 
-  ### 3. Configure as variáveis de ambiente copiando o arquivo .env-example para .env e ajustando conforme necessário.
+  ### 4. Configure as variáveis de ambiente copiando o arquivo .env-example para .env e ajustando conforme necessário.
 
   ### 5. Execute as migrações do banco de dados:
   ```bash
